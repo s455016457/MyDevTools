@@ -9,4 +9,7 @@
 /MyDevTools/obj
 /LogProvider/bin
 /LogProvider/obj
+/UnitTest/bin
+/UnitTest/obj
 /我的工具集
+/packages
