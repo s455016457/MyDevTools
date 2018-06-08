@@ -11,16 +11,16 @@ using System.Windows.Forms;
 
 namespace MyDevTools.Plugin.EncryptionTools.Forms
 {
-    public partial class AesCryptoForm : Form
+    public partial class DesCryptoForm : Form
     {
-        public AesCryptoForm()
+        public DesCryptoForm()
         {
             InitializeComponent();
         }
 
         private void btn_CreateKey_Click(object sender, EventArgs e)
         {
-            var keyValue = AesCrypto.CreateKeyAndIv();
+            var keyValue = DESCrypto.CreatedKey();
             textBox_Key.Text = keyValue.Key;
             textBox_IV.Text = keyValue.Value;
         }
@@ -50,7 +50,7 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
                 return;
             }
 
-            textBox_Result.Text = AesCrypto.Encrypt(body, key, iv);
+            textBox_Result.Text = DESCrypto.Encryptor(body, key, iv);
         }
 
         private void btn_Decrypt_Click(object sender, EventArgs e)
@@ -80,11 +80,11 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
 
             try
             {
-                textBox_Result.Text = AesCrypto.Decrypt(body, key, iv);
+                textBox_Result.Text = DESCrypto.Decryptor(body, key, iv);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("解密失败："+ex.Message, "错误");
+                MessageBox.Show("解密失败：" + ex.Message, "错误");
             }
         }
 

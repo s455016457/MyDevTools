@@ -214,7 +214,7 @@
             // 
             // smallImageList
             // 
-            this.smallImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth16Bit;
+            this.smallImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.smallImageList.ImageSize = new System.Drawing.Size(32, 32);
             this.smallImageList.TransparentColor = System.Drawing.Color.Transparent;
             // 

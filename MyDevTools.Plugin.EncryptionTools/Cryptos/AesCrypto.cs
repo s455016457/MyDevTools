@@ -125,8 +125,6 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
                     }
                 }
             }
-
-                return String.Empty;
         }
     }
 }

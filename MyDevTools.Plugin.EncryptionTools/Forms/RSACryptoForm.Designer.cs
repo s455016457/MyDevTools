@@ -118,11 +118,14 @@
             // 
             // textBox_Body
             // 
+            this.textBox_Body.AcceptsReturn = true;
+            this.textBox_Body.AllowDrop = true;
             this.textBox_Body.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_Body.Location = new System.Drawing.Point(6, 126);
             this.textBox_Body.Multiline = true;
             this.textBox_Body.Name = "textBox_Body";
+            this.textBox_Body.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Body.Size = new System.Drawing.Size(876, 136);
             this.textBox_Body.TabIndex = 7;
             // 
@@ -187,6 +190,8 @@
             // 
             // textBox_CryptBody
             // 
+            this.textBox_CryptBody.AcceptsReturn = true;
+            this.textBox_CryptBody.AllowDrop = true;
             this.textBox_CryptBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -194,6 +199,7 @@
             this.textBox_CryptBody.Multiline = true;
             this.textBox_CryptBody.Name = "textBox_CryptBody";
             this.textBox_CryptBody.ReadOnly = true;
+            this.textBox_CryptBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_CryptBody.Size = new System.Drawing.Size(876, 125);
             this.textBox_CryptBody.TabIndex = 14;
             // 

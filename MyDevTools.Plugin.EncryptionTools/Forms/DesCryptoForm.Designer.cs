@@ -1,6 +1,6 @@
 ﻿namespace MyDevTools.Plugin.EncryptionTools.Forms
 {
-    partial class AesCryptoForm
+    partial class DesCryptoForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AesCryptoForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DesCryptoForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_Key = new System.Windows.Forms.TextBox();
@@ -145,7 +145,7 @@
             this.btn_CopyResult.UseVisualStyleBackColor = true;
             this.btn_CopyResult.Click += new System.EventHandler(this.btn_CopyResult_Click);
             // 
-            // AesCryptoForm
+            // DesCryptoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -162,9 +162,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "AesCryptoForm";
+            this.Name = "DesCryptoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AES加密";
+            this.Text = "DES加密";
             this.ResumeLayout(false);
             this.PerformLayout();
 

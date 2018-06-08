@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Test.MyDevTools.Plugin.EncryptionTools\TestAesCrypto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.MyDevTools.Plugin.EncryptionTools\TestDesCrypto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

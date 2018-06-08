@@ -14,12 +14,12 @@ namespace MyDevTools.Repositories.Impl
 
         public IList<string> GetGroupName()
         {
-            return PluginManager.PluginManager.Plugins.Select(p=>p.Group).Distinct().ToList();
+            return GetPlugins().Select(p=>p.Group).Distinct().ToList();
         }
 
         public IList<IPlugin> GetPlugins()
         {
-            return PluginManager.PluginManager.Plugins;
+            return PluginManager.PluginManager.Plugins.OrderBy(p=>p.Title).ToList();
         }
     }
 }
