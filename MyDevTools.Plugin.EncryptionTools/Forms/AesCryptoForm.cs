@@ -16,13 +16,21 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         public AesCryptoForm()
         {
             InitializeComponent();
+            comboBox_EncryptType.SelectedIndex = 0;
         }
 
         private void btn_CreateKey_Click(object sender, EventArgs e)
         {
-            var keyValue = AesCrypto.CreateKeyAndIv();
-            textBox_Key.Text = keyValue.Key;
-            textBox_IV.Text = keyValue.Value;
+            if (isIvEncrypt())
+            {
+                var keyValue = AesCrypto.CreateKeyAndIv();
+                textBox_Key.Text = keyValue.Key;
+                textBox_IV.Text = keyValue.Value;
+            }
+            else
+            {
+                textBox_Key.Text = AesCrypto.CreateKey();
+            }
         }
 
         private void btn_Encrypt_Click(object sender, EventArgs e)
@@ -37,12 +45,11 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
                 return;
             }
 
-            if (String.IsNullOrEmpty(iv))
+            if (String.IsNullOrEmpty(iv)&& isIvEncrypt())
             {
                 MessageBox.Show("偏移量不能为空！", "温馨提示");
                 return;
             }
-
 
             if (String.IsNullOrEmpty(body))
             {
@@ -50,7 +57,10 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
                 return;
             }
 
-            textBox_Result.Text = AesCrypto.Encrypt(body, key, iv);
+            if(isIvEncrypt())
+                textBox_Result.Text = AesCrypto.Encrypt(body, key, iv);
+            else
+                textBox_Result.Text = AesCrypto.Encrypt(body, key);
         }
 
         private void btn_Decrypt_Click(object sender, EventArgs e)
@@ -65,7 +75,7 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
                 return;
             }
 
-            if (String.IsNullOrEmpty(iv))
+            if (String.IsNullOrEmpty(iv) && isIvEncrypt())
             {
                 MessageBox.Show("偏移量不能为空！", "温馨提示");
                 return;
@@ -80,7 +90,10 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
 
             try
             {
-                textBox_Result.Text = AesCrypto.Decrypt(body, key, iv);
+                if (isIvEncrypt())
+                    textBox_Result.Text = AesCrypto.Decrypt(body, key, iv);
+                else
+                    textBox_Result.Text = AesCrypto.Decrypt(body, key);
             }
             catch (Exception ex)
             {
@@ -88,9 +101,20 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
             }
         }
 
+        private Boolean isIvEncrypt()
+        {
+            return comboBox_EncryptType.SelectedItem.ToString().Equals("有偏移量加密", StringComparison.CurrentCultureIgnoreCase);
+        }
+
         private void btn_CopyResult_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(textBox_Result.Text.Trim());
+        }
+
+        private void comboBox_EncryptType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBox_Key.Text = string.Empty;
+            textBox_IV.Text = string.Empty;
         }
     }
 }

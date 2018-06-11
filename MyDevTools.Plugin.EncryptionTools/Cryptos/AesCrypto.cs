@@ -13,6 +13,8 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
     /// </summary>
     public class AesCrypto
     {
+        const string strKey = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        static Random random = new Random();
         /// <summary>
         /// 创建加密秘钥和初始化向量
         /// </summary>
@@ -25,6 +27,130 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
                 var iv = myAes.IV;
 
                 return new KeyValuePair<string, string>(Convert.ToBase64String(key),Convert.ToBase64String(iv));
+            }
+        }
+
+        /// <summary>
+        /// 创建秘钥，无向量
+        /// </summary>
+        /// <returns></returns>
+        public static String CreateKey()
+        {
+            return CryptoTransform.CreateKey();
+        }
+
+        /// <summary>
+        ///  加密，无向量
+        /// </summary>
+        /// <param name="input">明文</param>
+        /// <param name="key">秘钥，UTF8格式</param>
+        /// <returns>密文</returns>
+        public static String Encrypt(String input, String key)
+        {
+            return Encrypt(input, Encoding.UTF8.GetBytes(key));
+        }
+
+        /// <summary>
+        /// 加密，无向量
+        /// </summary>
+        /// <param name="input">明文</param>
+        /// <param name="key">秘钥</param>
+        /// <returns>密文</returns>
+        public static String Encrypt(String input, byte[] key)
+        {
+            if (input == null || input.Length <= 0)
+                throw new ArgumentNullException("plainText");
+            if (key == null || key.Length <= 0)
+                throw new ArgumentNullException("Key");
+
+            //创建AES管理工具
+            using (AesManaged myAes = new AesManaged()
+            {
+                Key = key,
+                Mode = CipherMode.ECB,
+                Padding = PaddingMode.ISO10126,
+            })
+            {
+                //创建加密算法
+                var encrypt = myAes.CreateEncryptor();
+
+                //创建内存流，并将明文写入内存流
+                using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
+                {
+                    //创建输出流，用于接收转换后的数据流
+                    Stream outStream = new MemoryStream();
+                    try
+                    {
+                        CryptoTransform.TransformByRead(inputStream, encrypt, ref outStream);
+
+                        return Convert.ToBase64String((outStream as MemoryStream).ToArray());
+                    }
+                    finally
+                    {
+                        if (outStream != null)
+                        {
+                            outStream.Close();
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///  解密，无向量
+        /// </summary>
+        /// <param name="input">密文</param>
+        /// <param name="key">秘钥，UTF8格式</param>
+        /// <returns>明文</returns>
+        public static String Decrypt(String input, String key)
+        {
+            return Decrypt(input, Encoding.UTF8.GetBytes(key));
+        }
+
+        /// <summary>
+        /// 解密 无向量
+        /// </summary>
+        /// <param name="input">密文</param>
+        /// <param name="key">秘钥，UTF8格式</param>
+        /// <returns>明文</returns>
+        public static String Decrypt(String input, byte[] key)
+        {
+            if (input == null || input.Length <= 0)
+                throw new ArgumentNullException("plainText");
+            if (key == null || key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            
+            using (AesManaged myAes = new AesManaged()
+            {
+                Key=key,
+                Mode=CipherMode.ECB,
+                Padding=PaddingMode.ISO10126,
+            })
+            {
+
+                //创建解密算法
+                var decrypt = myAes.CreateDecryptor();
+
+                //创建内存流，将密文直接写入内存流
+                using (MemoryStream memoryStream = new MemoryStream(Convert.FromBase64String(input)))
+                {
+                    //创建输出流，用于接收转换后的数据流
+                    Stream outStream = new MemoryStream();
+                    try
+                    {
+                        //根据解密算法，将密文解密为明文，并写入输出流
+                        CryptoTransform.TransformByRead(memoryStream, decrypt, ref outStream);
+
+                        return Encoding.UTF8.GetString((outStream as MemoryStream).ToArray());
+                    }
+                    finally
+                    {
+                        if (outStream != null)
+                        {
+                            outStream.Close();
+                        }
+                    }
+                }
             }
         }
 
@@ -60,18 +186,22 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
             {
                 //创建加密算法
                 var encrypt = myAes.CreateEncryptor(key, iv);
-
-                //创建内存流，用于接收加密数据流
-                using (MemoryStream memoryStream = new MemoryStream())
+                using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
                 {
-                    //创建加密算法数据流，将加密数据写入内存流
-                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, encrypt, CryptoStreamMode.Write))
+                    Stream outStream = new MemoryStream();
+                    try
                     {
-                        var types = Encoding.UTF8.GetBytes(input);
-                        cryptoStream.Write(types, 0, types.Length);
-                    }
+                        CryptoTransform.TransformByRead(inputStream, encrypt, ref outStream);
 
-                    return Convert.ToBase64String(memoryStream.ToArray());
+                        return Convert.ToBase64String((outStream as MemoryStream).ToArray());
+                    }
+                    finally
+                    {
+                        if (outStream != null)
+                        {
+                            outStream.Close();
+                        }
+                    }
                 }
             }
         }
@@ -108,19 +238,23 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
             {
                 //创建解密算法
                 var decrypt = myAes.CreateDecryptor(key, iv);
-
-                var types = Convert.FromBase64String(input);
+                
                 //创建内存流，将密文直接写入内存流
-                using (MemoryStream memoryStream = new MemoryStream(types))
+                using (MemoryStream memoryStream = new MemoryStream(Convert.FromBase64String(input)))
                 {
                     //创建解密算法数据流，将内存流写入
-                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decrypt, CryptoStreamMode.Read))
+                    Stream outStream = new MemoryStream();
+                    try
                     {
-                        //创建读取流
-                        using (StreamReader streamReader = new StreamReader(cryptoStream))
+                        CryptoTransform.TransformByRead(memoryStream, decrypt, ref outStream);
+
+                        return Encoding.UTF8.GetString((outStream as MemoryStream).ToArray());
+                    }
+                    finally
+                    {
+                        if (outStream != null)
                         {
-                            //读取流中所有字符
-                            return streamReader.ReadToEnd();
+                            outStream.Close();
                         }
                     }
                 }

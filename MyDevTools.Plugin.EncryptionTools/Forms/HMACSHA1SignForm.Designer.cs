@@ -1,6 +1,6 @@
 ﻿namespace MyDevTools.Plugin.EncryptionTools.Forms
 {
-    partial class AesCryptoForm
+    partial class HMACSHA1SignForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,18 +29,14 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox_Key = new System.Windows.Forms.TextBox();
-            this.textBox_IV = new System.Windows.Forms.TextBox();
+            this.textBox_Sign = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox_Body = new System.Windows.Forms.TextBox();
             this.textBox_Result = new System.Windows.Forms.TextBox();
-            this.btn_CreateKey = new System.Windows.Forms.Button();
+            this.btn_CreateSign = new System.Windows.Forms.Button();
             this.btn_Encrypt = new System.Windows.Forms.Button();
-            this.btn_Decrypt = new System.Windows.Forms.Button();
+            this.btn_Verify = new System.Windows.Forms.Button();
             this.btn_CopyResult = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox_EncryptType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -50,37 +46,20 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "秘钥";
+            this.label1.Text = "签名";
             // 
-            // label2
+            // textBox_Sign
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "偏移量";
-            // 
-            // textBox_Key
-            // 
-            this.textBox_Key.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Key.Location = new System.Drawing.Point(75, 10);
-            this.textBox_Key.Name = "textBox_Key";
-            this.textBox_Key.Size = new System.Drawing.Size(603, 21);
-            this.textBox_Key.TabIndex = 2;
-            // 
-            // textBox_IV
-            // 
-            this.textBox_IV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_IV.Location = new System.Drawing.Point(75, 42);
-            this.textBox_IV.Name = "textBox_IV";
-            this.textBox_IV.Size = new System.Drawing.Size(603, 21);
-            this.textBox_IV.TabIndex = 3;
+            this.textBox_Sign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_Sign.Location = new System.Drawing.Point(75, 10);
+            this.textBox_Sign.Name = "textBox_Sign";
+            this.textBox_Sign.Size = new System.Drawing.Size(603, 21);
+            this.textBox_Sign.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(273, 106);
+            this.label3.Location = new System.Drawing.Point(273, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 4;
@@ -89,10 +68,10 @@
             // textBox_Body
             // 
             this.textBox_Body.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Body.Location = new System.Drawing.Point(20, 121);
+            this.textBox_Body.Location = new System.Drawing.Point(20, 49);
             this.textBox_Body.Multiline = true;
             this.textBox_Body.Name = "textBox_Body";
-            this.textBox_Body.Size = new System.Drawing.Size(658, 101);
+            this.textBox_Body.Size = new System.Drawing.Size(658, 173);
             this.textBox_Body.TabIndex = 5;
             // 
             // textBox_Result
@@ -106,15 +85,15 @@
             this.textBox_Result.Size = new System.Drawing.Size(658, 128);
             this.textBox_Result.TabIndex = 6;
             // 
-            // btn_CreateKey
+            // btn_CreateSign
             // 
-            this.btn_CreateKey.Location = new System.Drawing.Point(20, 228);
-            this.btn_CreateKey.Name = "btn_CreateKey";
-            this.btn_CreateKey.Size = new System.Drawing.Size(75, 23);
-            this.btn_CreateKey.TabIndex = 7;
-            this.btn_CreateKey.Text = "创建秘钥";
-            this.btn_CreateKey.UseVisualStyleBackColor = true;
-            this.btn_CreateKey.Click += new System.EventHandler(this.btn_CreateKey_Click);
+            this.btn_CreateSign.Location = new System.Drawing.Point(20, 228);
+            this.btn_CreateSign.Name = "btn_CreateSign";
+            this.btn_CreateSign.Size = new System.Drawing.Size(75, 23);
+            this.btn_CreateSign.TabIndex = 7;
+            this.btn_CreateSign.Text = "创建签名";
+            this.btn_CreateSign.UseVisualStyleBackColor = true;
+            this.btn_CreateSign.Click += new System.EventHandler(this.btn_CreateSign_Click);
             // 
             // btn_Encrypt
             // 
@@ -124,17 +103,17 @@
             this.btn_Encrypt.TabIndex = 8;
             this.btn_Encrypt.Text = "加密";
             this.btn_Encrypt.UseVisualStyleBackColor = true;
-            this.btn_Encrypt.Click += new System.EventHandler(this.btn_Encrypt_Click);
+            this.btn_Encrypt.Click += new System.EventHandler(this.btn_DoSign_Click);
             // 
-            // btn_Decrypt
+            // btn_Verify
             // 
-            this.btn_Decrypt.Location = new System.Drawing.Point(182, 228);
-            this.btn_Decrypt.Name = "btn_Decrypt";
-            this.btn_Decrypt.Size = new System.Drawing.Size(75, 23);
-            this.btn_Decrypt.TabIndex = 9;
-            this.btn_Decrypt.Text = "解密";
-            this.btn_Decrypt.UseVisualStyleBackColor = true;
-            this.btn_Decrypt.Click += new System.EventHandler(this.btn_Decrypt_Click);
+            this.btn_Verify.Location = new System.Drawing.Point(182, 228);
+            this.btn_Verify.Name = "btn_Verify";
+            this.btn_Verify.Size = new System.Drawing.Size(75, 23);
+            this.btn_Verify.TabIndex = 9;
+            this.btn_Verify.Text = "验证";
+            this.btn_Verify.UseVisualStyleBackColor = true;
+            this.btn_Verify.Click += new System.EventHandler(this.btn_Verify_Click);
             // 
             // btn_CopyResult
             // 
@@ -146,48 +125,23 @@
             this.btn_CopyResult.UseVisualStyleBackColor = true;
             this.btn_CopyResult.Click += new System.EventHandler(this.btn_CopyResult_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 76);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "加密方式";
-            // 
-            // comboBox_EncryptType
-            // 
-            this.comboBox_EncryptType.FormattingEnabled = true;
-            this.comboBox_EncryptType.Items.AddRange(new object[] {
-            "无偏移量加密",
-            "有偏移量加密"});
-            this.comboBox_EncryptType.Location = new System.Drawing.Point(75, 73);
-            this.comboBox_EncryptType.Name = "comboBox_EncryptType";
-            this.comboBox_EncryptType.Size = new System.Drawing.Size(182, 20);
-            this.comboBox_EncryptType.TabIndex = 12;
-            this.comboBox_EncryptType.SelectedIndexChanged += new System.EventHandler(this.comboBox_EncryptType_SelectedIndexChanged);
-            // 
-            // AesCryptoForm
+            // HMACSHA1SignForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(690, 397);
-            this.Controls.Add(this.comboBox_EncryptType);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.btn_CopyResult);
-            this.Controls.Add(this.btn_Decrypt);
+            this.Controls.Add(this.btn_Verify);
             this.Controls.Add(this.btn_Encrypt);
-            this.Controls.Add(this.btn_CreateKey);
+            this.Controls.Add(this.btn_CreateSign);
             this.Controls.Add(this.textBox_Result);
             this.Controls.Add(this.textBox_Body);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox_IV);
-            this.Controls.Add(this.textBox_Key);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox_Sign);
             this.Controls.Add(this.label1);
-            this.Name = "AesCryptoForm";
+            this.Name = "HMACSHA1SignForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AES加密";
+            this.Text = "HMACSHA1签名";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,17 +150,13 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox_Key;
-        private System.Windows.Forms.TextBox textBox_IV;
+        private System.Windows.Forms.TextBox textBox_Sign;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox_Body;
         private System.Windows.Forms.TextBox textBox_Result;
-        private System.Windows.Forms.Button btn_CreateKey;
+        private System.Windows.Forms.Button btn_CreateSign;
         private System.Windows.Forms.Button btn_Encrypt;
-        private System.Windows.Forms.Button btn_Decrypt;
+        private System.Windows.Forms.Button btn_Verify;
         private System.Windows.Forms.Button btn_CopyResult;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox_EncryptType;
     }
 }

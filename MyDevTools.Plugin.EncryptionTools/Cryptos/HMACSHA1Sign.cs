@@ -20,12 +20,13 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
         /// <returns>签名Key Base64字符串</returns>
         public static String CreatedSignKey(int lenght = 64)
         {
-            byte[] bytes = new Byte[lenght];
-            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
-            {
-                rng.GetBytes(bytes);
-                return Convert.ToBase64String(bytes);
-            }
+            return CryptoTransform.CreateKey(lenght);
+            //byte[] bytes = new Byte[lenght];
+            //using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            //{
+            //    rng.GetBytes(bytes);
+            //    return Convert.ToBase64String(bytes);
+            //}
         }
 
         /// <summary>
@@ -63,6 +64,11 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
                     //创建输出内存流
                     using (MemoryStream outStream = new MemoryStream())
                     {
+                        /**
+                         * 可以将签名拆分写入内容流指定位置
+                         * 在验证时，从流的指定位置获取并拼接出签名和内容
+                         * */
+
                         //将哈希值写入输出内存流
                         outStream.Write(hashValue, 0, hashValue.Length);
 
@@ -72,8 +78,10 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
                         byte[] buffer = new byte[1024];
                         do
                         {
-                            bytesRead = inputStream.Read(buffer, 0, 
-                                inputStream.Length > buffer.Count() ? buffer.Count() : (int)inputStream.Length);
+                            bytesRead = inputStream.Read(buffer, 0,
+                                inputStream.Length - inputStream.Position > buffer.Count()
+                                ? buffer.Count()
+                                : (int)(inputStream.Length - inputStream.Position));
                             outStream.Write(buffer, 0, bytesRead);
                         } while (bytesRead > 0);
 
@@ -113,6 +121,9 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
                 //将字节写入内存流
                 using (MemoryStream inputStream = new MemoryStream(bytes))
                 {
+                    /**
+                     * 可以从流指定位置获取签名
+                     * */
                     //将哈希值保存进字节数组
                     inputStream.Read(storedHash, 0, storedHash.Length);
 
