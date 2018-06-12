@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -55,6 +56,27 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
             return stringBuilder.ToString();
         }
 
+        public static byte[] Encryptor(byte[] toEncrypt, String key)
+        {
+            List<byte> arrayList = new List<byte>();
+            rsaServiec.FromXmlString(key);
+            int keySize = rsaServiec.KeySize / 8;
+            int maxLength = keySize - 42;
+            int dataLength = toEncrypt.Length;
+            int iterations = dataLength / maxLength;
+
+            for (int i = 0; i <= iterations; i++)
+            {
+                byte[] tempBytes = new byte[(dataLength - maxLength * i > maxLength) ? maxLength : dataLength - maxLength * i];
+                Buffer.BlockCopy(toEncrypt, maxLength * i, tempBytes, 0, tempBytes.Length);
+                byte[] encryptedBytes = rsaServiec.Encrypt(tempBytes, false);
+                //Array.Reverse(encryptedBytes);
+                arrayList.AddRange(encryptedBytes);
+            }
+
+            return arrayList.ToArray();
+        }
+
         /// <summary>
         /// 解密
         /// </summary>
@@ -79,6 +101,22 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
                 arrayList.AddRange(rsaServiec.Decrypt(encryptedBytes, false));
             }
             return Encoding.UTF8.GetString(arrayList.ToArray(typeof(Byte)) as byte[]);
+        }
+
+        public static byte[] Decryptor(byte[] encrypted, String key)
+        {
+            rsaServiec.FromXmlString(key);
+            string content = Convert.ToBase64String(encrypted);
+
+            int base64BlockSize = ((rsaServiec.KeySize / 8) % 3 != 0) ? (((rsaServiec.KeySize / 8) / 3) * 4) + 4 : ((rsaServiec.KeySize / 8) / 3) * 4;
+            int iterations = content.Length / base64BlockSize;
+            List<byte> list = new List<byte>();
+            for (int i = 0; i < iterations; i++)
+            {
+                byte[] encryptedBytes = Convert.FromBase64String(content.Substring(base64BlockSize * i, base64BlockSize));
+                list.AddRange(rsaServiec.Decrypt(encryptedBytes, false));
+            }
+            return list.ToArray();
         }
 
         /// <summary>
@@ -115,18 +153,18 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
         /// 验证签名  公钥验证签名
         /// </summary>
         /// <param name="key">公钥</param>
-        /// <param name="signedData">签名</param>
-        /// <param name="signature">数据</param>
+        /// <param name="content">数据</param>
+        /// <param name="signa">签名</param>
         /// <returns></returns>
-        public static bool VerifyHash(String key, byte[] signedData, byte[] signature)
+        public static bool VerifyHash(String key, byte[] content, byte[] signa)
         {
             rsaServiec.FromXmlString(key);
             SHA1Managed hash = new SHA1Managed();
             byte[] hashedData;
             
-            bool dataOK = rsaServiec.VerifyData(signedData, CryptoConfig.MapNameToOID(OidName), signature);
-            hashedData = hash.ComputeHash(signedData);
-            return rsaServiec.VerifyHash(hashedData, CryptoConfig.MapNameToOID(OidName), signature);
+            bool dataOK = rsaServiec.VerifyData(content, CryptoConfig.MapNameToOID(OidName), signa);
+            hashedData = hash.ComputeHash(content);
+            return rsaServiec.VerifyHash(hashedData, CryptoConfig.MapNameToOID(OidName), signa);
         }
 
         /// <summary>

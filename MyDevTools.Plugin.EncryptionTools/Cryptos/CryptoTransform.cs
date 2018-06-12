@@ -33,12 +33,12 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
         /// 算法转换，对转换流读取访问
         /// </summary>
         /// <param name="inputStream">输入流</param>
-        /// <param name="encryptor">加密/解密算法</param>
+        /// <param name="transform">加密/解密算法</param>
         /// <param name="outStream">转换输出流</param>
-        public static void TransformByRead(Stream inputStream, ICryptoTransform encryptor, ref Stream outStream)
+        public static void TransformByRead(Stream inputStream, ICryptoTransform transform, ref Stream outStream)
         {
             //创建算法转换流 写入数据
-            using (CryptoStream cryptoStream = new CryptoStream(inputStream, encryptor, CryptoStreamMode.Read))
+            using (CryptoStream cryptoStream = new CryptoStream(inputStream, transform, CryptoStreamMode.Read))
             {
                 Byte[] buffer = new Byte[1024];
 
@@ -58,11 +58,11 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
         /// 算法转换，对转换流写入访问
         /// </summary>
         /// <param name="inputStream">输入流</param>
-        /// <param name="encryptor">加密/解密算法</param>
+        /// <param name="transform">加密/解密算法</param>
         /// <param name="outStream">转换输出流</param>
-        public static void TransformByWrite(Stream inputStream, ICryptoTransform encryptor, ref Stream outStream)
+        public static void TransformByWrite(Stream inputStream, ICryptoTransform transform, ref Stream outStream)
         {
-            using (CryptoStream cryptoStream = new CryptoStream(outStream, encryptor, CryptoStreamMode.Write))
+            using (CryptoStream cryptoStream = new CryptoStream(outStream, transform, CryptoStreamMode.Write))
             {
                 Byte[] buffer = new Byte[1024];
 

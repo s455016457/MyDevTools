@@ -189,6 +189,7 @@
             this.lvPlugin.SmallImageList = this.smallImageList;
             this.lvPlugin.TabIndex = 3;
             this.lvPlugin.UseCompatibleStateImageBehavior = false;
+            this.lvPlugin.View = System.Windows.Forms.View.Tile;
             this.lvPlugin.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvPlugin_MouseDoubleClick);
             // 
             // Title
