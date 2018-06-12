@@ -18,12 +18,17 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         {
             InitializeComponent();
 
+            #region 初始化用户
             Alice = new User("Alice");
             Bob = new User("Bob");
+            #endregion
 
+            #region 订阅用户
             Alice.Subscription(Bob);
             Bob.Subscription(Alice);
+            #endregion
 
+            #region 订阅事件
             Alice.onBeginUserSendMessage += new UserMessageEventHandler(p =>
             {
                 SendToConsole("Alice.onBeginUserSendMessage：【{0}发送消息给{1}，内容：{2}】", p.SendUser, p.ReceiveUser, p.Message);
@@ -75,6 +80,7 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
             {
                 AddBobChatHistory("{0}:{1}", p.SendUser, p.Message);
             });
+            #endregion
 
             AlicePublicKey.Text = Alice.PublicKey;
             BobPublicKey.Text = Bob.PublicKey;
@@ -110,6 +116,7 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
             stringBuilder.AppendFormat(format, args);
             AliceChatHistory.Text += stringBuilder.ToString();
         }
+
         private void AddBobChatHistory(String format, params string[] args)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -120,8 +127,15 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         }
     }
     
+    /// <summary>
+    /// 用户消息事件语柄
+    /// </summary>
+    /// <param name="messageEventArgs"></param>
     public delegate void UserMessageEventHandler(MessageEventArgs messageEventArgs);
 
+    /// <summary>
+    /// 消息事件参数
+    /// </summary>
     public class MessageEventArgs : EventArgs
     {
         public String SendUser { get; private set; }
@@ -136,8 +150,12 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         }
     }
 
+    /// <summary>
+    /// 用户
+    /// </summary>
     public class User
     {
+        #region 属性
         /// <summary>
         /// 私钥
         /// </summary>
@@ -150,6 +168,25 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         /// 用户名称
         /// </summary>
         public String Name { get; private set; }
+        /// <summary>
+        /// 发送角色
+        /// </summary>
+        public Sender Sender { get; private set; }
+        /// <summary>
+        /// 接收角色
+        /// </summary>
+        public Receiver Receiver { get; private set; }
+        /// <summary>
+        /// 订阅用户列表
+        /// </summary>
+        private IList<User> SubscriptionUser = new List<User>();
+        /// <summary>
+        /// 我订阅的用户
+        /// </summary>
+        private IList<User> MySubscriptionUser = new List<User>();
+        #endregion
+
+        #region 事件
         /// <summary>
         /// 用户准备消息发送时触发
         /// </summary>
@@ -167,24 +204,9 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         /// 用户完成消息接收时触发
         /// </summary>
         public UserMessageEventHandler onEndUserReceiveMessage { get; set; }
-        /// <summary>
-        /// 发送角色
-        /// </summary>
-        public Sender Sender { get; private set; }
-        /// <summary>
-        /// 接收角色
-        /// </summary>
-        public Receiver Receiver { get; private set; }
+        #endregion
 
-        /// <summary>
-        /// 订阅用户列表
-        /// </summary>
-        public IList<User> SubscriptionUser = new List<User>();
-        /// <summary>
-        /// 我订阅的用户
-        /// </summary>
-        public IList<User> MySubscriptionUser = new List<User>();
-        
+        #region 构造函数
         /// <summary>
         /// 初始化用户
         /// </summary>
@@ -198,7 +220,9 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
             Sender = new Sender(this, PrivateKey);
             Receiver = new Receiver(this, PrivateKey);
         }
+        #endregion
 
+        #region 私有方法
         /// <summary>
         /// 添加订阅用户
         /// </summary>
@@ -215,7 +239,9 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         {
             MySubscriptionUser.Add(user);
         }
+        #endregion
 
+        #region 成员方法
         /// <summary>
         /// 订阅用户
         /// </summary>
@@ -263,7 +289,7 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         /// <param name="SendBy">发送者</param>
         /// <param name="sign">签名</param>
         /// <param name="message">加密消息</param>
-        public void ReceiveMessage(String SendBy,String sign,String message)
+        public void ReceiveMessage(String SendBy, String sign, String message)
         {
             try
             {
@@ -283,7 +309,8 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
             {
                 MessageBox.Show(ex.Message, "错误");
             }
-        }        
+        }
+        #endregion
     }
 
     /// <summary>
@@ -291,14 +318,20 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
     /// </summary>
     public class Sender
     {
+        #region 属性
         public User User { get; private set; }
         private String PrivateKey { get; set; }
+        #endregion
+
+        #region 构造函数
         public Sender(User User,String PrivateKey)
         {
             this.PrivateKey = PrivateKey;
             this.User = User;
         }
+        #endregion
 
+        #region 成员方法
         /// <summary>
         /// 发送消息
         /// 1、使用接收用户公钥数据加密
@@ -336,6 +369,7 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         {
             return RSACrypto.Encryptor(toEncrypt,key);
         }
+        #endregion
     }
 
     /// <summary>
@@ -343,14 +377,20 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
     /// </summary>
     public class Receiver
     {
+        #region 属性
         public User User { get; private set; }
         private String PrivateKey { get; set; }
+        #endregion
+
+        #region 构造函数
         public Receiver(User User, String PrivateKey)
         {
             this.PrivateKey = PrivateKey;
             this.User = User;
         }
+        #endregion
 
+        #region 成员方法
         /// <summary>
         /// 接收消息
         /// 1、使用发送者公钥验证数据
@@ -396,5 +436,6 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         {
             return RSACrypto.Decryptor(encrypted, PrivateKey);
         }
+        #endregion
     }
 }
