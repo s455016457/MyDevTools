@@ -44,6 +44,9 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -54,6 +57,9 @@
     <Compile Include="Test.MyDevTools.Plugin.EncryptionTools\TestHMACSHA1Sign.cs" />
     <Compile Include="Test.MyDevTools.Plugin.EncryptionTools\TestDesCrypto.cs" />
     <Compile Include="Test.MyDevTools.Plugin.EncryptionTools\TestRC2Crypto.cs" />
+    <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestAESCryptor.cs" />
+    <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestFileReadWriteHelper.cs" />
+    <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestJsonSerializationHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -62,6 +68,14 @@
     <ProjectReference Include="..\MyDevTools.Plugin.EncryptionTools\MyDevTools.Plugin.EncryptionTools.csproj">
       <Project>{ad28b317-0904-4cd6-ba03-9be9afa16f28}</Project>
       <Name>MyDevTools.Plugin.EncryptionTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDevTools.Plugin.UtilityTools\MyDevTools.Plugin.UtilityTools.csproj">
+      <Project>{7e048556-8790-415f-8f67-4d63cb6be5a5}</Project>
+      <Name>MyDevTools.Plugin.UtilityTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDevTools.Plugin\MyDevTools.Plugin.csproj">
+      <Project>{f640fd49-f9bf-42b2-b606-3cb988921ba5}</Project>
+      <Name>MyDevTools.Plugin</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

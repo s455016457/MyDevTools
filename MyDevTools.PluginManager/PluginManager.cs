@@ -11,6 +11,7 @@ using MyDevTools.Plugin.Interfaces;
 using MyDevTools.Plugin.Attributes;
 using System.IO;
 using System.Reflection;
+using MyDevTools.Plugin.Utility;
 
 namespace MyDevTools.PluginManager
 {
@@ -24,7 +25,7 @@ namespace MyDevTools.PluginManager
         /// <summary>
         /// 插件文件夹
         /// </summary>
-        public static string PluginsFolder { get; private set; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins");
+        public static string PluginsFolder { get; private set; } = ApplicationCofig.PluginsDirectoryPath;
 
         /// <summary>
         /// 插件集合

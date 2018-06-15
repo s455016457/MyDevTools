@@ -7,6 +7,9 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Linq;
 using MyDevTools.Plugin.Interfaces;
+using LogProvider.Factories;
+using LogProvider.Interfaces;
+using LogProvider;
 
 namespace MyDevTools
 {
@@ -14,6 +17,7 @@ namespace MyDevTools
     {
         private IList<IPlugin> allPluginList;
         private IList<IPlugin> pluginList;
+        private static ILogSaveProvider log = new LogSaveLocalhostProvider();
         IMenuItemRepository menuItemRepository = new MenuItemRepository();
         public Form1()
         {
@@ -146,6 +150,11 @@ namespace MyDevTools
                 }
                 catch (Exception ex)
                 {
+                    var entity = LogEntityFactory.Create(String.Format("启动工具失败:{0}", ex.ToString()),
+                          LogTypeFacotry.CreateExceptionLogType(),
+                          LogLevelFactory.CreateGravenessLogLevel());
+                    log.SaveLog(entity);
+
                     MessageBox.Show(ex.ToString(), "启动工具失败");
                 }
             }

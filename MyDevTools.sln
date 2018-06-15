@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDevTools.Plugin.Encryptio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{7E04BBCB-7415-4788-A20E-AD5BA0307FFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDevTools.Plugin.UtilityTools", "MyDevTools.Plugin.UtilityTools\MyDevTools.Plugin.UtilityTools.csproj", "{7E048556-8790-415F-8F67-4D63CB6BE5A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{7E04BBCB-7415-4788-A20E-AD5BA0307FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E04BBCB-7415-4788-A20E-AD5BA0307FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E04BBCB-7415-4788-A20E-AD5BA0307FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E048556-8790-415F-8F67-4D63CB6BE5A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E048556-8790-415F-8F67-4D63CB6BE5A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E048556-8790-415F-8F67-4D63CB6BE5A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E048556-8790-415F-8F67-4D63CB6BE5A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
