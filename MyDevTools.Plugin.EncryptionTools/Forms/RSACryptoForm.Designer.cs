@@ -67,6 +67,7 @@
             this.textBox_PublicKey.Name = "textBox_PublicKey";
             this.textBox_PublicKey.Size = new System.Drawing.Size(843, 21);
             this.textBox_PublicKey.TabIndex = 1;
+            this.textBox_PublicKey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label2
             // 
@@ -85,6 +86,7 @@
             this.textBox_PrivateKey.Name = "textBox_PrivateKey";
             this.textBox_PrivateKey.Size = new System.Drawing.Size(843, 21);
             this.textBox_PrivateKey.TabIndex = 3;
+            this.textBox_PrivateKey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // CreateKey
             // 
@@ -128,6 +130,7 @@
             this.textBox_Body.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Body.Size = new System.Drawing.Size(876, 136);
             this.textBox_Body.TabIndex = 7;
+            this.textBox_Body.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label3
             // 
@@ -202,6 +205,7 @@
             this.textBox_CryptBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_CryptBody.Size = new System.Drawing.Size(876, 125);
             this.textBox_CryptBody.TabIndex = 14;
+            this.textBox_CryptBody.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBox_Signa
             // 
@@ -211,8 +215,10 @@
             this.textBox_Signa.Location = new System.Drawing.Point(6, 282);
             this.textBox_Signa.Multiline = true;
             this.textBox_Signa.Name = "textBox_Signa";
+            this.textBox_Signa.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Signa.Size = new System.Drawing.Size(876, 44);
             this.textBox_Signa.TabIndex = 15;
+            this.textBox_Signa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label4
             // 

@@ -79,5 +79,14 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
                 MessageBox.Show(ex.Message,"错误");
             }
         }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
+        }
     }
 }

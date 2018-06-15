@@ -145,22 +145,35 @@ namespace MyDevTools.Plugin.EncryptionTools
 
         private void CopyPrivateKey_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(textBox_PrivateKey.Text.Trim());
+            if (textBox_PrivateKey.Text.Trim().Length > 0)
+                Clipboard.SetText(textBox_PrivateKey.Text.Trim());
         }
 
         private void CopyPublicKey_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(textBox_PublicKey.Text.Trim());
+            if (textBox_PublicKey.Text.Trim().Length > 0)
+                Clipboard.SetText(textBox_PublicKey.Text.Trim());
         }
 
         private void CopyCryptBody_Click(object sender, EventArgs e)
         {
+            if(textBox_CryptBody.Text.Trim().Length>0)
             Clipboard.SetText(textBox_CryptBody.Text.Trim());
         }
 
         private void CopySigna_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(textBox_Signa.Text.Trim());
+            if (textBox_Signa.Text.Trim().Length > 0)
+                Clipboard.SetText(textBox_Signa.Text.Trim());
+        }        
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
         }
     }
 }

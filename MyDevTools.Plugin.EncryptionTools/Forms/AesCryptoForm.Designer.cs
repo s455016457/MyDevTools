@@ -41,6 +41,10 @@
             this.btn_CopyResult = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox_EncryptType = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox_KeyDisplayFormat = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox_CiphertextDisplayFormat = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -68,6 +72,7 @@
             this.textBox_Key.Name = "textBox_Key";
             this.textBox_Key.Size = new System.Drawing.Size(603, 21);
             this.textBox_Key.TabIndex = 2;
+            this.textBox_Key.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBox_IV
             // 
@@ -76,6 +81,7 @@
             this.textBox_IV.Name = "textBox_IV";
             this.textBox_IV.Size = new System.Drawing.Size(603, 21);
             this.textBox_IV.TabIndex = 3;
+            this.textBox_IV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label3
             // 
@@ -92,8 +98,10 @@
             this.textBox_Body.Location = new System.Drawing.Point(20, 121);
             this.textBox_Body.Multiline = true;
             this.textBox_Body.Name = "textBox_Body";
+            this.textBox_Body.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Body.Size = new System.Drawing.Size(658, 101);
             this.textBox_Body.TabIndex = 5;
+            this.textBox_Body.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBox_Result
             // 
@@ -103,8 +111,10 @@
             this.textBox_Result.Multiline = true;
             this.textBox_Result.Name = "textBox_Result";
             this.textBox_Result.ReadOnly = true;
+            this.textBox_Result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Result.Size = new System.Drawing.Size(658, 128);
             this.textBox_Result.TabIndex = 6;
+            this.textBox_Result.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // btn_CreateKey
             // 
@@ -163,15 +173,59 @@
             "有偏移量加密"});
             this.comboBox_EncryptType.Location = new System.Drawing.Point(75, 73);
             this.comboBox_EncryptType.Name = "comboBox_EncryptType";
-            this.comboBox_EncryptType.Size = new System.Drawing.Size(182, 20);
+            this.comboBox_EncryptType.Size = new System.Drawing.Size(124, 20);
             this.comboBox_EncryptType.TabIndex = 12;
             this.comboBox_EncryptType.SelectedIndexChanged += new System.EventHandler(this.comboBox_EncryptType_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(227, 76);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 12);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "秘钥显示格式";
+            // 
+            // comboBox_KeyDisplayFormat
+            // 
+            this.comboBox_KeyDisplayFormat.FormattingEnabled = true;
+            this.comboBox_KeyDisplayFormat.Items.AddRange(new object[] {
+            "Base64String",
+            "BitString"});
+            this.comboBox_KeyDisplayFormat.Location = new System.Drawing.Point(310, 71);
+            this.comboBox_KeyDisplayFormat.Name = "comboBox_KeyDisplayFormat";
+            this.comboBox_KeyDisplayFormat.Size = new System.Drawing.Size(124, 20);
+            this.comboBox_KeyDisplayFormat.TabIndex = 12;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(470, 76);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 12);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "密文显示格式";
+            // 
+            // comboBox_CiphertextDisplayFormat
+            // 
+            this.comboBox_CiphertextDisplayFormat.FormattingEnabled = true;
+            this.comboBox_CiphertextDisplayFormat.Items.AddRange(new object[] {
+            "Base64String",
+            "BitString"});
+            this.comboBox_CiphertextDisplayFormat.Location = new System.Drawing.Point(554, 73);
+            this.comboBox_CiphertextDisplayFormat.Name = "comboBox_CiphertextDisplayFormat";
+            this.comboBox_CiphertextDisplayFormat.Size = new System.Drawing.Size(124, 20);
+            this.comboBox_CiphertextDisplayFormat.TabIndex = 12;
             // 
             // AesCryptoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(690, 397);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboBox_CiphertextDisplayFormat);
+            this.Controls.Add(this.comboBox_KeyDisplayFormat);
             this.Controls.Add(this.comboBox_EncryptType);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btn_CopyResult);
@@ -208,5 +262,9 @@
         private System.Windows.Forms.Button btn_CopyResult;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox_EncryptType;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox_KeyDisplayFormat;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox_CiphertextDisplayFormat;
     }
 }

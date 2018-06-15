@@ -69,6 +69,7 @@
             this.textBox_Key.Name = "textBox_Key";
             this.textBox_Key.Size = new System.Drawing.Size(603, 21);
             this.textBox_Key.TabIndex = 2;
+            this.textBox_Key.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBox_IV
             // 
@@ -77,6 +78,7 @@
             this.textBox_IV.Name = "textBox_IV";
             this.textBox_IV.Size = new System.Drawing.Size(603, 21);
             this.textBox_IV.TabIndex = 3;
+            this.textBox_IV.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label3
             // 
@@ -93,8 +95,10 @@
             this.textBox_Body.Location = new System.Drawing.Point(20, 121);
             this.textBox_Body.Multiline = true;
             this.textBox_Body.Name = "textBox_Body";
+            this.textBox_Body.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Body.Size = new System.Drawing.Size(658, 101);
             this.textBox_Body.TabIndex = 5;
+            this.textBox_Body.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBox_Result
             // 
@@ -104,8 +108,10 @@
             this.textBox_Result.Multiline = true;
             this.textBox_Result.Name = "textBox_Result";
             this.textBox_Result.ReadOnly = true;
+            this.textBox_Result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Result.Size = new System.Drawing.Size(658, 128);
             this.textBox_Result.TabIndex = 6;
+            this.textBox_Result.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // btn_CreateKey
             // 

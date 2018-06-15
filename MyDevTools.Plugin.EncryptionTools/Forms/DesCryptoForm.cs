@@ -92,5 +92,14 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         {
             Clipboard.SetText(textBox_Result.Text.Trim());
         }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
+        }
     }
 }

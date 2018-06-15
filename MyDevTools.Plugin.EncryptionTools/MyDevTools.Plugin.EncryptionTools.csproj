@@ -49,6 +49,9 @@
     <Compile Include="Cryptos\RC2Crypto.cs" />
     <Compile Include="Cryptos\RijndaelCrypto.cs" />
     <Compile Include="Cryptos\RSACrypto.cs" />
+    <Compile Include="Extends\ByteExtend.cs" />
+    <Compile Include="Extends\IntExtend.cs" />
+    <Compile Include="Extends\StringExtend.cs" />
     <Compile Include="Forms\RijndaelCryptoForm.cs">
       <SubType>Form</SubType>
     </Compile>

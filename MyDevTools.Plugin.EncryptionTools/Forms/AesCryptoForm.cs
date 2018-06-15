@@ -1,4 +1,5 @@
 ﻿using MyDevTools.Plugin.EncryptionTools.Cryptos;
+using MyDevTools.Plugin.EncryptionTools.Extends;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,20 +18,18 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         {
             InitializeComponent();
             comboBox_EncryptType.SelectedIndex = 0;
+            comboBox_KeyDisplayFormat.SelectedIndex = 0;
+            comboBox_CiphertextDisplayFormat.SelectedIndex = 0;
         }
 
         private void btn_CreateKey_Click(object sender, EventArgs e)
         {
-            if (isIvEncrypt())
+            var keyValue = AesCrypto.CreateKeyAndIvBytes();
+            if (!isIvEncrypt())
             {
-                var keyValue = AesCrypto.CreateKeyAndIv();
-                textBox_Key.Text = keyValue.Key;
-                textBox_IV.Text = keyValue.Value;
+                keyValue = new KeyValuePair<byte[], byte[]>(keyValue.Key, null);
             }
-            else
-            {
-                textBox_Key.Text = AesCrypto.CreateKey();
-            }
+            DisplayKey(keyValue);
         }
 
         private void btn_Encrypt_Click(object sender, EventArgs e)
@@ -56,11 +55,9 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
                 MessageBox.Show("待处理文本不能为空！", "温馨提示");
                 return;
             }
-
-            if(isIvEncrypt())
-                textBox_Result.Text = AesCrypto.Encrypt(body, key, iv);
-            else
-                textBox_Result.Text = AesCrypto.Encrypt(body, key);
+            var keyValue = KeyToBytes();
+            byte[] bytes = AesCrypto.Encrypt(Encoding.UTF8.GetBytes(body), keyValue.Key, keyValue.Value);
+            DisplayCiphertexts(bytes);
         }
 
         private void btn_Decrypt_Click(object sender, EventArgs e)
@@ -90,14 +87,13 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
 
             try
             {
-                if (isIvEncrypt())
-                    textBox_Result.Text = AesCrypto.Decrypt(body, key, iv);
-                else
-                    textBox_Result.Text = AesCrypto.Decrypt(body, key);
+                var keyValue = KeyToBytes();
+                byte[] bytes = CiphertextsToBytes();
+                textBox_Result.Text = Encoding.UTF8.GetString(AesCrypto.Decrypt(bytes, keyValue.Key, keyValue.Value));
             }
             catch (Exception ex)
             {
-                MessageBox.Show("解密失败："+ex.Message, "错误");
+                MessageBox.Show("解密失败：" + ex.Message, "错误");
             }
         }
 
@@ -115,6 +111,102 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         {
             textBox_Key.Text = string.Empty;
             textBox_IV.Text = string.Empty;
+        }
+
+        private void DisplayKey(KeyValuePair<Byte[], Byte[]> keyValue)
+        {
+            if (comboBox_KeyDisplayFormat.SelectedItem.ToString().Equals("Base64String", StringComparison.CurrentCultureIgnoreCase))
+            {
+                textBox_Key.Text = Convert.ToBase64String(keyValue.Key);
+                if (keyValue.Value != null)
+                {
+                    textBox_IV.Text = Convert.ToString(keyValue.Value);
+                }
+            }
+            else if (comboBox_KeyDisplayFormat.SelectedItem.ToString().Equals("BitString", StringComparison.CurrentCultureIgnoreCase))
+            {
+                textBox_Key.Text = keyValue.Key.ToBitString("");
+                if (keyValue.Value != null)
+                {
+                    textBox_IV.Text = keyValue.Value.ToBitString("");
+                }
+            }
+            else
+            {
+                MessageBox.Show("未知的显示格式："+comboBox_KeyDisplayFormat.SelectedItem, "错误");
+            }
+        }
+
+        private KeyValuePair<byte[], byte[]> KeyToBytes()
+        {
+            byte[] bytesKey = null, bytesIv = null;
+            String key = textBox_Key.Text.Trim(), iv = textBox_IV.Text.Trim();
+            if (isIvEncrypt() && String.IsNullOrWhiteSpace(iv))
+            {
+                MessageBox.Show("便宜量不能为空！", "温馨提示");
+            }
+
+            if (comboBox_KeyDisplayFormat.SelectedItem.ToString().Equals("Base64String", StringComparison.CurrentCultureIgnoreCase))
+            {
+                bytesKey = Convert.FromBase64String(key);
+                if (isIvEncrypt())
+                {
+                    bytesIv = Convert.FromBase64String(iv);
+                }
+            }
+            else if (comboBox_KeyDisplayFormat.SelectedItem.ToString().Equals("BitString", StringComparison.CurrentCultureIgnoreCase))
+            {
+                bytesKey = key.ToByteArrayByBitString();
+                if (isIvEncrypt())
+                {
+                    bytesIv = iv.ToByteArrayByBitString();
+                }
+            }
+            else
+            {
+                MessageBox.Show("未知的显示格式：" + comboBox_KeyDisplayFormat.SelectedItem, "错误");
+                return default(KeyValuePair<byte[],byte[]>);
+            }
+
+            return new KeyValuePair<byte[], byte[]>(bytesKey, bytesIv);
+        }
+
+        private void DisplayCiphertexts(byte[] bytes)
+        {
+            if (comboBox_CiphertextDisplayFormat.SelectedItem.ToString().Equals("Base64String", StringComparison.CurrentCultureIgnoreCase))
+            {
+                textBox_Result.Text = Convert.ToBase64String(bytes);
+            }
+            else if (comboBox_CiphertextDisplayFormat.SelectedItem.ToString().Equals("BitString", StringComparison.CurrentCultureIgnoreCase))
+            {
+                textBox_Result.Text = bytes.ToBitString("");
+            }
+            else
+            {
+                MessageBox.Show("未知的显示格式：" + comboBox_KeyDisplayFormat.SelectedItem, "错误");
+            }
+        }
+
+        private byte[] CiphertextsToBytes()
+        {
+            String Ciphertexts = textBox_Result.Text.Trim();
+            if (comboBox_CiphertextDisplayFormat.SelectedItem.ToString().Equals("Base64String", StringComparison.CurrentCultureIgnoreCase))
+                return Convert.FromBase64String(Ciphertexts);
+
+            if (comboBox_CiphertextDisplayFormat.SelectedItem.ToString().Equals("BitString", StringComparison.CurrentCultureIgnoreCase))
+                return Ciphertexts.ToByteArrayByBitString();
+
+            MessageBox.Show("未知的显示格式：" + comboBox_KeyDisplayFormat.SelectedItem, "错误");
+            return null;
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
         }
     }
 }

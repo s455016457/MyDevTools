@@ -38,43 +38,51 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
         /// <returns></returns>
         public static string Encrypt(string content, string key, bool fOAEP)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(content);
-            rsaServiec.FromXmlString(key);
-            int keySize = rsaServiec.KeySize / 8;
-            int maxLength = keySize - 42;
-            int dataLength = bytes.Length;
-            int iterations = dataLength / maxLength;
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int i = 0; i <= iterations; i++)
-            {
-                byte[] tempBytes = new byte[(dataLength - maxLength * i > maxLength) ? maxLength : dataLength - maxLength * i];
-                Buffer.BlockCopy(bytes, maxLength * i, tempBytes, 0, tempBytes.Length);
-                byte[] encryptedBytes = rsaServiec.Encrypt(tempBytes, false);
-                Array.Reverse(encryptedBytes);
-                stringBuilder.Append(Convert.ToBase64String(encryptedBytes));
-            }
-            return stringBuilder.ToString();
+            return Convert.ToBase64String(Encryptor(Encoding.UTF8.GetBytes(content), key,true));
         }
 
-        public static byte[] Encryptor(byte[] toEncrypt, String key)
+        public static byte[] Encryptor(byte[] toEncrypt, String key, bool Reverse = false)
         {
             List<byte> arrayList = new List<byte>();
             rsaServiec.FromXmlString(key);
-            int keySize = rsaServiec.KeySize / 8;
-            int maxLength = keySize - 42;
-            int dataLength = toEncrypt.Length;
-            int iterations = dataLength / maxLength;
 
-            for (int i = 0; i <= iterations; i++)
+            //加密快大小
+            int encryptorBlockSize = rsaServiec.KeySize / 8 - 42;
+
+            int count = (int)Math.Ceiling((decimal)toEncrypt.Length / encryptorBlockSize);
+            for (int i = 0; i < count; i++)
             {
-                byte[] tempBytes = new byte[(dataLength - maxLength * i > maxLength) ? maxLength : dataLength - maxLength * i];
-                Buffer.BlockCopy(toEncrypt, maxLength * i, tempBytes, 0, tempBytes.Length);
-                byte[] encryptedBytes = rsaServiec.Encrypt(tempBytes, false);
-                //Array.Reverse(encryptedBytes);
-                arrayList.AddRange(encryptedBytes);
+                byte[] tempBytes = new byte[encryptorBlockSize];
+                if (toEncrypt.Length - i * encryptorBlockSize < encryptorBlockSize)
+                {
+                    tempBytes = new byte[toEncrypt.Length - i * encryptorBlockSize];
+                }
+                Array.Copy(toEncrypt, i * encryptorBlockSize, tempBytes, 0, tempBytes.Length);
+
+                arrayList.AddRange(rsaServiec.Encrypt(tempBytes, false));
+            }
+            if (!Reverse) return arrayList.ToArray();
+
+            //根据解密快大小反转字节数组
+            List<byte> reverseArrayList = new List<byte>();
+            //解密快大小
+            int decryptorBlockSize = rsaServiec.KeySize / 8;
+            var encryptedBytes = arrayList.ToArray();
+
+            count = (int)Math.Ceiling((decimal)encryptedBytes.Length / decryptorBlockSize);
+            for (int i = 0; i < count; i++)
+            {
+                byte[] tempBytes = new byte[decryptorBlockSize];
+                if (encryptedBytes.Length - i * decryptorBlockSize < decryptorBlockSize)
+                {
+                    tempBytes = new byte[encryptedBytes.Length - i * decryptorBlockSize];
+                }
+                Array.Copy(encryptedBytes, i * decryptorBlockSize, tempBytes, 0, tempBytes.Length);
+                Array.Reverse(tempBytes);
+                reverseArrayList.AddRange(tempBytes);
             }
 
-            return arrayList.ToArray();
+            return reverseArrayList.ToArray();
         }
 
         /// <summary>
@@ -89,32 +97,28 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
         /// <returns></returns>
         public static string Decrypt(string content, string key, bool fOAEP)
         {
-            rsaServiec.FromXmlString(key);
-
-            int base64BlockSize = ((rsaServiec.KeySize / 8) % 3 != 0) ? (((rsaServiec.KeySize / 8) / 3) * 4) + 4 : ((rsaServiec.KeySize / 8) / 3) * 4;
-            int iterations = content.Length / base64BlockSize;
-            ArrayList arrayList = new ArrayList();
-            for (int i = 0; i < iterations; i++)
-            {
-                byte[] encryptedBytes = Convert.FromBase64String(content.Substring(base64BlockSize * i, base64BlockSize));
-                Array.Reverse(encryptedBytes);
-                arrayList.AddRange(rsaServiec.Decrypt(encryptedBytes, false));
-            }
-            return Encoding.UTF8.GetString(arrayList.ToArray(typeof(Byte)) as byte[]);
+            return Encoding.UTF8.GetString(Decryptor(Convert.FromBase64String(content), key,true));
         }
 
-        public static byte[] Decryptor(byte[] encrypted, String key)
+        public static byte[] Decryptor(byte[] encrypted, String key,bool Reverse=false)
         {
-            rsaServiec.FromXmlString(key);
-            string content = Convert.ToBase64String(encrypted);
-
-            int base64BlockSize = ((rsaServiec.KeySize / 8) % 3 != 0) ? (((rsaServiec.KeySize / 8) / 3) * 4) + 4 : ((rsaServiec.KeySize / 8) / 3) * 4;
-            int iterations = content.Length / base64BlockSize;
             List<byte> list = new List<byte>();
-            for (int i = 0; i < iterations; i++)
+            rsaServiec.FromXmlString(key);
+
+            //解密快大小
+            int decryptorBlockSize = rsaServiec.KeySize / 8;
+            int count = (int)Math.Ceiling((decimal)encrypted.Length / decryptorBlockSize);
+            for (int i = 0; i < count; i++)
             {
-                byte[] encryptedBytes = Convert.FromBase64String(content.Substring(base64BlockSize * i, base64BlockSize));
-                list.AddRange(rsaServiec.Decrypt(encryptedBytes, false));
+                byte[] tempBytes = new byte[decryptorBlockSize];
+                if (encrypted.Length - i * decryptorBlockSize < decryptorBlockSize)
+                {
+                    tempBytes = new byte[encrypted.Length - i * decryptorBlockSize];
+                }
+                Array.Copy(encrypted, i * decryptorBlockSize, tempBytes, 0, tempBytes.Length);
+                if (Reverse)
+                    Array.Reverse(tempBytes);
+                list.AddRange(rsaServiec.Decrypt(tempBytes, false));
             }
             return list.ToArray();
         }

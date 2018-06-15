@@ -55,6 +55,7 @@
             this.textBox_Sign.Name = "textBox_Sign";
             this.textBox_Sign.Size = new System.Drawing.Size(603, 21);
             this.textBox_Sign.TabIndex = 2;
+            this.textBox_Sign.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label3
             // 
@@ -71,8 +72,10 @@
             this.textBox_Body.Location = new System.Drawing.Point(20, 49);
             this.textBox_Body.Multiline = true;
             this.textBox_Body.Name = "textBox_Body";
+            this.textBox_Body.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Body.Size = new System.Drawing.Size(658, 173);
             this.textBox_Body.TabIndex = 5;
+            this.textBox_Body.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // textBox_Result
             // 
@@ -82,8 +85,10 @@
             this.textBox_Result.Multiline = true;
             this.textBox_Result.Name = "textBox_Result";
             this.textBox_Result.ReadOnly = true;
+            this.textBox_Result.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Result.Size = new System.Drawing.Size(658, 128);
             this.textBox_Result.TabIndex = 6;
+            this.textBox_Result.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // btn_CreateSign
             // 

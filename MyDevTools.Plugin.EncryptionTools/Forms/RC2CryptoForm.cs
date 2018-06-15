@@ -116,5 +116,14 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
             textBox_Key.Text = string.Empty;
             textBox_IV.Text = string.Empty;
         }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
+        }
     }
 }

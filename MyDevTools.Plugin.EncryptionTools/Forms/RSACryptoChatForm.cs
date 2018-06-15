@@ -125,6 +125,15 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
             stringBuilder.AppendFormat(format, args);
             BobChatHistory.Text += stringBuilder.ToString();
         }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
+        }
     }
     
     /// <summary>

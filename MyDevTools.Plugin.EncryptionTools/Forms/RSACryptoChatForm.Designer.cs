@@ -78,6 +78,7 @@
             this.AliceSendText.Name = "AliceSendText";
             this.AliceSendText.Size = new System.Drawing.Size(450, 123);
             this.AliceSendText.TabIndex = 5;
+            this.AliceSendText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // AliceChatHistory
             // 
@@ -88,6 +89,7 @@
             this.AliceChatHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.AliceChatHistory.Size = new System.Drawing.Size(450, 353);
             this.AliceChatHistory.TabIndex = 4;
+            this.AliceChatHistory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // AlicePublicKey
             // 
@@ -96,6 +98,7 @@
             this.AlicePublicKey.ReadOnly = true;
             this.AlicePublicKey.Size = new System.Drawing.Size(414, 21);
             this.AlicePublicKey.TabIndex = 2;
+            this.AlicePublicKey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // label1
             // 
@@ -146,6 +149,7 @@
             this.BobSendText.Name = "BobSendText";
             this.BobSendText.Size = new System.Drawing.Size(450, 123);
             this.BobSendText.TabIndex = 12;
+            this.BobSendText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // BobChatHistory
             // 
@@ -156,6 +160,7 @@
             this.BobChatHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.BobChatHistory.Size = new System.Drawing.Size(450, 357);
             this.BobChatHistory.TabIndex = 11;
+            this.BobChatHistory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // BobPublicKey
             // 
@@ -164,6 +169,7 @@
             this.BobPublicKey.ReadOnly = true;
             this.BobPublicKey.Size = new System.Drawing.Size(414, 21);
             this.BobPublicKey.TabIndex = 9;
+            this.BobPublicKey.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // groupBox3
             // 
@@ -184,6 +190,7 @@
             this.textBox_console.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_console.Size = new System.Drawing.Size(962, 144);
             this.textBox_console.TabIndex = 7;
+            this.textBox_console.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // RSACryptoChatForm
             // 

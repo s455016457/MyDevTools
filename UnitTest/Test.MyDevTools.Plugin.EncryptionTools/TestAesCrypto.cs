@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MyDevTools.Plugin.EncryptionTools.Cryptos;
+using MyDevTools.Plugin.EncryptionTools.Extends;
 using System.Text;
 
 namespace UnitTest.Test.MyDevTools.Plugin.EncryptionTools
@@ -81,6 +82,51 @@ AES算法本质上是具有固定块大小和迭代次数的Rijndael对称算法
             Console.WriteLine("密文：{0}", encryptBody);
             Console.WriteLine("明文：{0}", decryptBody);
             Assert.IsTrue(decryptBody.Equals(body));
+        }
+
+        [TestMethod]
+        public void TestBitConverter()
+        {
+            Console.WriteLine("base64String Key:{0}",Key);
+            var bytes = Convert.FromBase64String(Key);
+
+            String bitKey = BitConverter.ToString(bytes);
+            Console.WriteLine("BitString Key:{0}", bitKey);
+
+            String[] strs= bitKey.Split('-');
+            var newBytes = new byte[strs.Length];
+            for (int i = 0; i < strs.Length; i++)
+            {
+                newBytes[i] = Byte.Parse(Convert.ToInt32(strs[i], 16).ToString());
+                if (!bytes[i].Equals(newBytes[i]))
+                {
+                    Console.WriteLine("bytes[i]:{0} newBytes[i]：{1} ", bytes[i], newBytes[i]);
+                }
+            }
+
+            String newKey = Convert.ToBase64String(newBytes);
+            Console.WriteLine("base64String Key:{0}", newKey);
+            Assert.IsTrue(Key.Equals(newKey));
+        }
+        [TestMethod]
+        public void TestBitConverter2()
+        {
+            Console.WriteLine("base64String Key:{0}",Key);
+            var bytes = Convert.FromBase64String(Key);
+
+            String bitKey = bytes.ToBitString("");
+            Console.WriteLine("BitString Key:{0}", bitKey);
+            var newBytes = bitKey.ToByteArrayByBitString();
+            String newKey = Convert.ToBase64String(newBytes);
+            Console.WriteLine("base64String Key:{0}", newKey);
+            Assert.IsTrue(Key.Equals(newKey));
+
+            bitKey = bytes.ToBitString("-");
+            Console.WriteLine("BitString Key:{0}", bitKey);
+            newBytes = bitKey.ToByteArrayByBitString('-');
+            newKey = Convert.ToBase64String(newBytes);
+            Console.WriteLine("base64String Key:{0}", newKey);
+            Assert.IsTrue(Key.Equals(newKey));
         }
     }
 }
