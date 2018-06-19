@@ -60,6 +60,7 @@
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestAESCryptor.cs" />
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestFileReadWriteHelper.cs" />
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestJsonSerializationHelper.cs" />
+    <Compile Include="Test.MyDevTools.Plugin.UtilityTools\Tranfer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

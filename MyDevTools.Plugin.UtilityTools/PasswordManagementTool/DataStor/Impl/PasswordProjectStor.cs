@@ -56,6 +56,7 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.DataStor.Impl
         {
             /**
              * 从文件中获取数据
+             * 验证签名
              * 对数据解密
              * 对数据反序列化
              * */
