@@ -58,14 +58,14 @@ namespace MyDevTools.Plugin.UtilityTools.Utility.Impl
             }
         }
 
-        public string Decryptor(string encrypted)
+        public byte[] Decryptor(byte[] bytes)
         {
-            return AesCryptoHelper.Decrypt(encrypted, Key.Key, Key.Value);
+            return AesCryptoHelper.Decrypt(bytes, Convert.FromBase64String(Key.Key), Convert.FromBase64String(Key.Value));
         }
 
-        public string Encryptor(string message)
+        public byte[] Encryptor(byte[] bytes)
         {
-            return AesCryptoHelper.Encrypt(message, Key.Key, Key.Value);
+            return AesCryptoHelper.Encrypt(bytes, Convert.FromBase64String(Key.Key), Convert.FromBase64String(Key.Value));
         }        
     }
 }

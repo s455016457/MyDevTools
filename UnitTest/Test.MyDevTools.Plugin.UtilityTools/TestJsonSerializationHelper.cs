@@ -18,7 +18,7 @@ namespace UnitTest.Test.MyDevTools.Plugin.UtilityTools
         {
             String str = "[{\"Name\":\"test\",\"Address\":\"aaa\",\"Account\":\"3333333\",\"Email\":\"dfwef@54.sdfwe\",\"MobilPhone\":\"1232345423\",\"ExtensionFields\":[{\"Name\":\"AAAA1\",\"Value\":\"SDFWEFW\"},{\"Name\":\"AAAAAA2\",\"Value\":\"SDFWFEW\"}],\"SafetyProblems\":[{\"Problem\":\"BBBB1\",\"Solution\":\"SDFEWFWEFW11111BBBBB\"},{\"Problem\":\"BBBBB2\",\"Solution\":\"BBBB2SDFWEFWF\"}],\"PasswordItems\":[{\"Name\":\"CCCCC1\",\"Password\":\"CCCCC1SFWEFWF\",\"Remark\":\"CCCCC1SD2321123\"},{\"Name\":\"CCCCC2\",\"Password\":\"CCCC2SDFWWSDWEFEW\",\"Remark\":null}]}]";
 
-            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PassworkProject>>(str);
+            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PasswordProject>>(str);
 
             Assert.IsNotNull(obj.FirstOrDefault().ExtensionFields);
         }

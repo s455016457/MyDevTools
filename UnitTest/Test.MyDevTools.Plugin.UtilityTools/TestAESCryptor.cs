@@ -6,6 +6,7 @@ using MyDevTools.Plugin.UtilityTools.Utility.Impl;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -38,19 +39,19 @@ namespace UnitTest.Test.MyDevTools.Plugin.UtilityTools
             //FileReadWriteHelper fileReadWriteHelper = new FileReadWriteHelper(privateKeyDirectoryPath, fileName);
             //AESCryptor aESCryptor = new AESCryptor(new JsonSerializationHelper<KeyValuePair<String, String>>(),fileReadWriteHelper);
 
-            ICryptor aESCryptor = Factory.CreateCryptorr();
+            ICryptor aESCryptor = Factory.CreateCryptor();
 
-            String encrypted = aESCryptor.Encryptor(input);
+            String encrypted = Convert.ToBase64String(aESCryptor.Encryptor(Encoding.UTF8.GetBytes(input)));
             Assert.IsNotNull(encrypted);
             Console.WriteLine(encrypted);
 
-            String outPut = aESCryptor.Decryptor(encrypted);
+            String outPut = Encoding.UTF8.GetString(aESCryptor.Decryptor(Convert.FromBase64String(encrypted)));
 
             Assert.IsNotNull(outPut);
             Console.WriteLine(outPut);
-            Console.WriteLine(outPut.Length-input.Length);
-            Assert.IsTrue(outPut.Length>0);
-            Assert.IsTrue(outPut.Length==input.Length);
+            Console.WriteLine(outPut.Length - input.Length);
+            Assert.IsTrue(outPut.Length > 0);
+            Assert.IsTrue(outPut.Length == input.Length);
         }
     }
 }

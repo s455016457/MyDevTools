@@ -60,6 +60,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox_MobilPhone = new System.Windows.Forms.TextBox();
+            this.toolStripButton_UpdateLoginPassword = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -84,7 +85,8 @@
             this.toolStripButton_Remove,
             this.toolStripButton_AddExtendField,
             this.toolStripButton_AddSafetyProblems,
-            this.toolStripButton_AddPassrowdItem});
+            this.toolStripButton_AddPassrowdItem,
+            this.toolStripButton_UpdateLoginPassword});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(784, 25);
@@ -413,6 +415,15 @@
             this.textBox_MobilPhone.TabIndex = 1;
             this.textBox_MobilPhone.Leave += new System.EventHandler(this.textBox_MobilPhone_Leave);
             // 
+            // toolStripButton_UpdateLoginPassword
+            // 
+            this.toolStripButton_UpdateLoginPassword.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_UpdateLoginPassword.Image")));
+            this.toolStripButton_UpdateLoginPassword.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_UpdateLoginPassword.Name = "toolStripButton_UpdateLoginPassword";
+            this.toolStripButton_UpdateLoginPassword.Size = new System.Drawing.Size(100, 22);
+            this.toolStripButton_UpdateLoginPassword.Text = "修改登录密码";
+            this.toolStripButton_UpdateLoginPassword.Click += new System.EventHandler(this.toolStripButton_UpdateLoginPassword_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -480,5 +491,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox_MobilPhone;
+        private System.Windows.Forms.ToolStripButton toolStripButton_UpdateLoginPassword;
     }
 }

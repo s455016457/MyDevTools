@@ -1,34 +1,32 @@
-﻿using MyDevTools.Plugin.Utility;
-using MyDevTools.Plugin.UtilityTools.PasswordManagementTool.DataStor;
-using MyDevTools.Plugin.UtilityTools.PasswordManagementTool.DataStor.Impl;
-using MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Entity;
+﻿using MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Entity;
 using MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Repository;
-using MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Repository.Impl;
-using MyDevTools.Plugin.UtilityTools.Utility;
-using MyDevTools.Plugin.UtilityTools.Utility.Impl;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
 {
+    /**
+     * 还需添加登陆密码验证，登陆密码更新
+     * 密码用MD5不可逆加密，保存在.data文件中
+     * 并用密码加密字符串再对密文做次加密
+     * 密码登录后才从硬盘中加载数据
+     * */
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// 程序签名
+        /// </summary>
+        internal const String Sign = "DD01A9A0FA8864D6E18BA40243A433ABA6A4732707FD9EE9F43972B8682C63DC";
         internal IPassworkProjectRepository repository { get; private set; }
 
         private DetailAction _projectDetailAction = DetailAction.Display;
 
         public event EventHandler<DetailActionChangeEventArg> onProjectDetailActionChange;
 
-        private PassworkProject SelectPassworkProject = null;
+        private PasswordProject SelectPassworkProject = null;
+
+        private Boolean isLogin = false;
 
         public DetailAction ProjectDetailAction
         {
@@ -45,12 +43,45 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
 
         public MainForm()
         {
-            repository = Factory.CreatePassworkProjectRepository();
-            InitializeComponent();           
-
-            ProjectList.Items.AddRange(repository.GetPassworkProjectNameList().ToArray());
+            InitializeComponent();
             onProjectDetailActionChange += MainForm_onProjectDetailActionChange;
             ProjectDetailAction = DetailAction.Display;
+            repository = Factory.CreatePassworkProjectRepository(Sign);
+            if (String.IsNullOrEmpty(repository.GetPassword()))
+            {
+                new CreatePassword(repository) { TopMost=true}.Show();
+            }
+            else
+            {
+                ShowLoginForm();
+            }
+        }
+
+        private void ShowLoginForm()
+        {
+            ConfirmForm passwordForm = new ConfirmForm("请登录", "请输入登录密码", "", p =>
+            {
+                try
+                {
+                    if (!repository.VerificationPassword(p))
+                    {
+                        MessageBox.Show("密码不正确！", "温馨提示");
+                        return false;
+                    }
+                    isLogin = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "温馨提示");
+                    return false;
+                }
+                ProjectList.Items.AddRange(repository.GetPassworkProjectNameList().ToArray());
+                return true;
+            })
+            {
+                TopMost = true,
+            };
+            passwordForm.Show();
         }
 
         private void MainForm_onProjectDetailActionChange(object sender, DetailActionChangeEventArg e)
@@ -206,18 +237,28 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
         {
             try
             {
+                if (!isLogin)
+                {
+                    ShowLoginForm();
+                    return;
+                }
                 textBox_Name.Focus();
                 repository.SaveChanges();
                 ProjectDetailAction = DetailAction.Display;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "温馨提示s");
+                MessageBox.Show(ex.Message, "温馨提示");
             }
         }
 
         private void toolStripButton_AddNew_Click(object sender, EventArgs e)
         {
+            if (!isLogin)
+            {
+                ShowLoginForm();
+                return;
+            }
             ConfirmForm confirmForm = new ConfirmForm("添加密码项目", "请输入密码项目名称", "", p =>
             {
                 if (p.Length <= 0)
@@ -774,6 +815,14 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
             if (ProjectDetailAction == DetailAction.Display) return;
             if (SelectPassworkProject == null) return;
             SelectPassworkProject.MobilPhone = textBox_MobilPhone.Text.Trim();
+        }
+
+        private void toolStripButton_UpdateLoginPassword_Click(object sender, EventArgs e)
+        {
+            new UpdatePassword(repository)
+            {
+                TopMost = true
+            }.Show();
         }
     }
 

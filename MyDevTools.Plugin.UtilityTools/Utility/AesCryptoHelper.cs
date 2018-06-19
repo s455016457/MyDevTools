@@ -181,18 +181,36 @@ namespace MyDevTools.Plugin.UtilityTools.Utility
             if (input == null || input.Length <= 0)
                 return string.Empty;
 
+            return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(input), key, iv));
+        }
+        /// <summary>
+        /// 加密
+        /// </summary>
+        /// <param name="bytes">代加密字符串</param>
+        /// <param name="key">秘钥</param>
+        /// <param name="iv">初始化向量</param>
+        /// <returns></returns>
+        public static byte[] Encrypt(byte[] bytes, byte[] key, byte[] iv)
+        {
+            if (key == null || key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (iv == null || iv.Length <= 0)
+                throw new ArgumentNullException("IV");
+            if (bytes == null || bytes.Length <= 0)
+                return new byte[0];
+
             using (AesManaged myAes = new AesManaged())
             {
                 //创建加密算法
                 var encrypt = myAes.CreateEncryptor(key, iv);
-                using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes(input)))
+                using (MemoryStream inputStream = new MemoryStream(bytes))
                 {
                     Stream outStream = new MemoryStream();
                     try
                     {
                         CryptoTransform.TransformByRead(inputStream, encrypt, ref outStream);
 
-                        return Convert.ToBase64String((outStream as MemoryStream).ToArray());
+                        return (outStream as MemoryStream).ToArray();
                     }
                     finally
                     {
@@ -226,20 +244,32 @@ namespace MyDevTools.Plugin.UtilityTools.Utility
         /// <returns></returns>
         public static String Decrypt(String input, byte[] key, byte[] iv)
         {
+            return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(input), key, iv));
+        }
+
+        /// <summary>
+        /// 解密
+        /// </summary>
+        /// <param name="bytes">密文字符串</param>
+        /// <param name="key">秘钥</param>
+        /// <param name="iv">初始化向量</param>
+        /// <returns></returns>
+        public static byte[] Decrypt(byte[] bytes, byte[] key, byte[] iv)
+        {
             if (key == null || key.Length <= 0)
                 throw new ArgumentNullException("Key");
             if (iv == null || iv.Length <= 0)
                 throw new ArgumentNullException("IV");
-            if (input == null || input.Length <= 0)
-                return String.Empty;
+            if (bytes == null || bytes.Length <= 0)
+                return  new byte[0];
 
             using (AesManaged myAes = new AesManaged())
             {
                 //创建解密算法
                 var decrypt = myAes.CreateDecryptor(key, iv);
-                
+
                 //创建内存流，将密文直接写入内存流
-                using (MemoryStream memoryStream = new MemoryStream(Convert.FromBase64String(input)))
+                using (MemoryStream memoryStream = new MemoryStream(bytes))
                 {
                     //创建解密算法数据流，将内存流写入
                     Stream outStream = new MemoryStream();
@@ -247,7 +277,7 @@ namespace MyDevTools.Plugin.UtilityTools.Utility
                     {
                         CryptoTransform.TransformByRead(memoryStream, decrypt, ref outStream);
 
-                        return Encoding.UTF8.GetString((outStream as MemoryStream).ToArray());
+                        return (outStream as MemoryStream).ToArray();
                     }
                     finally
                     {

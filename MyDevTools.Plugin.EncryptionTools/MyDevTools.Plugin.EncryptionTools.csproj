@@ -46,12 +46,19 @@
     <Compile Include="Cryptos\CryptoTransform.cs" />
     <Compile Include="Cryptos\DESCrypto.cs" />
     <Compile Include="Cryptos\HMACSHA1Sign.cs" />
+    <Compile Include="Cryptos\MD5Crypto.cs" />
     <Compile Include="Cryptos\RC2Crypto.cs" />
     <Compile Include="Cryptos\RijndaelCrypto.cs" />
     <Compile Include="Cryptos\RSACrypto.cs" />
     <Compile Include="Extends\ByteExtend.cs" />
     <Compile Include="Extends\IntExtend.cs" />
     <Compile Include="Extends\StringExtend.cs" />
+    <Compile Include="Forms\MD5CryptoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MD5CryptoForm.Designer.cs">
+      <DependentUpon>MD5CryptoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RijndaelCryptoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +95,7 @@
     <Compile Include="Forms\RSACryptoChatForm.Designer.cs">
       <DependentUpon>RSACryptoChatForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\MD5CryptorPlugin.cs" />
     <Compile Include="Plugins\RijndaelCryptoPlugin.cs" />
     <Compile Include="Plugins\RC2CryptorPlugin.cs" />
     <Compile Include="Plugins\HMACSHA1SignPlugin.cs" />
@@ -119,6 +127,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\MD5CryptoForm.resx">
+      <DependentUpon>MD5CryptoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\RijndaelCryptoForm.resx">
       <DependentUpon>RijndaelCryptoForm.cs</DependentUpon>
     </EmbeddedResource>

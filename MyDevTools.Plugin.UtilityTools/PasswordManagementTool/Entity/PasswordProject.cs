@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MyDevTools.Plugin.UtilityTools.Utility;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Entity
     /// <summary>
     /// 密码项目
     /// </summary>
-    public class PassworkProject
+    public class PasswordProject
     {
         /// <summary>
         /// 项目名称
@@ -110,8 +111,8 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Entity
         /// </summary>
         private List<PasswordItem> _passwordItems { get; set; }
 
-        private PassworkProject() { }
-        public PassworkProject(String Name, String Account)
+        private PasswordProject() { }
+        public PasswordProject(String Name, String Account)
         {
             this.Name = Name;
             this.Account = Account;

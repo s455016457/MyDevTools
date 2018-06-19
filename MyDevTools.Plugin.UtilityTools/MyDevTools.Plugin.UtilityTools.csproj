@@ -49,8 +49,21 @@
     <Compile Include="PasswordManagementTool\DataStor\Impl\PasswordProjectStor.cs" />
     <Compile Include="PasswordManagementTool\Entity\ExtensionField.cs" />
     <Compile Include="PasswordManagementTool\Entity\PasswordItem.cs" />
-    <Compile Include="PasswordManagementTool\Entity\PassworkProject.cs" />
+    <Compile Include="PasswordManagementTool\Entity\PasswordProject.cs" />
+    <Compile Include="PasswordManagementTool\Entity\PaswordProjectDataStor.cs" />
     <Compile Include="PasswordManagementTool\Entity\SafetyProblem.cs" />
+    <Compile Include="PasswordManagementTool\Forms\UpdatePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordManagementTool\Forms\UpdatePassword.Designer.cs">
+      <DependentUpon>UpdatePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordManagementTool\Forms\CreatePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordManagementTool\Forms\CreatePassword.Designer.cs">
+      <DependentUpon>CreatePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="PasswordManagementTool\Forms\ConfirmForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,7 +77,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PasswordManagementTool\Factory.cs" />
-    <Compile Include="PasswordManagementTool\Repository\Impl\PassworkProjectRepository.cs" />
+    <Compile Include="PasswordManagementTool\Repository\Impl\PasswordProjectRepository.cs" />
     <Compile Include="PasswordManagementTool\Repository\IPassworkProjectRepository.cs" />
     <Compile Include="Plugins\PasswordManagementToolPlugin.cs" />
     <Compile Include="Resources.Designer.cs">
@@ -73,14 +86,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Utility\AesCryptoHelper.cs" />
+    <Compile Include="Utility\ByteExtend.cs" />
     <Compile Include="Utility\CryptoTransform.cs" />
     <Compile Include="Utility\Impl\AESCryptor.cs" />
     <Compile Include="Utility\Impl\FileReadWriteHelper.cs" />
+    <Compile Include="Utility\Impl\HMACSHA1Sign.cs" />
     <Compile Include="Utility\Impl\JsonSerializationHelper.cs" />
     <Compile Include="Utility\ISerializationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ICryptor.cs" />
     <Compile Include="Utility\IFileReadWriteHelper.cs" />
+    <Compile Include="Utility\ISign.cs" />
+    <Compile Include="Utility\MD5CryptoHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LogProvider\LogProvider.csproj">
@@ -96,6 +113,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PasswordManagementTool\Forms\UpdatePassword.resx">
+      <DependentUpon>UpdatePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordManagementTool\Forms\CreatePassword.resx">
+      <DependentUpon>CreatePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PasswordManagementTool\Forms\ConfirmForm.resx">
       <DependentUpon>ConfirmForm.cs</DependentUpon>
     </EmbeddedResource>

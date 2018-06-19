@@ -14,15 +14,15 @@ namespace MyDevTools.Plugin.UtilityTools.Utility
         /// <summary>
         /// 加密
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="bytes"></param>
         /// <returns></returns>
-        String Encryptor(String message);
+        byte[] Encryptor(byte[] bytes);
 
         /// <summary>
         /// 解密
         /// </summary>
         /// <param name="encrypted"></param>
         /// <returns></returns>
-        String Decryptor(String encrypted);
+        byte[] Decryptor(byte[] bytes);
     }
 }

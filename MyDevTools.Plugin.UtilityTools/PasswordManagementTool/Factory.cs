@@ -22,9 +22,9 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool
         /// 创建密码项目资源库
         /// </summary>
         /// <returns></returns>
-        public static IPassworkProjectRepository CreatePassworkProjectRepository()
+        public static IPassworkProjectRepository CreatePassworkProjectRepository(String sign)
         {
-            return new PassworkProjectRepository(CreatePasswordProjectStor());
+            return new PasswordProjectRepository(CreatePasswordProjectStor(), sign);
         }
 
         /// <summary>
@@ -52,10 +52,15 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static ICryptor CreateCryptorr()
+        public static ICryptor CreateCryptor()
         {
             return new AESCryptor(CreateSerializationHelper<KeyValuePair<String, String>>()
                 , CreateFileReadWriteHelper(privateKeyDirectoryPath, privateKeyFileName));
+        }
+
+        public static ISign CreateSign()
+        {
+            return new HMACSHA1Sign();
         }
 
         /// <summary>
@@ -64,8 +69,9 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool
         /// <returns></returns>
         public static IPasswordProjectStor CreatePasswordProjectStor()
         {
-            return new PasswordProjectStor(CreateSerializationHelper<List<PassworkProject>>()
-                , CreateCryptorr()
+            return new PasswordProjectStor(CreateSerializationHelper<PaswordProjectDataStor>()
+                , CreateCryptor()
+                , CreateSign()
                 , CreateFileReadWriteHelper(privateKeyDirectoryPath, dataFileName));
         }
     }
