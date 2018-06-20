@@ -18,5 +18,7 @@ namespace MyDevTools.Plugin.UtilityTools.Utility
         /// </summary>
         /// <param name="message"></param>
         void Write(String message);
+
+        Boolean HasContent();
     }
 }

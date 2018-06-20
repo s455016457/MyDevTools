@@ -18,6 +18,6 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.DataStor
         /// 获取密码项目列表
         /// </summary>
         /// <returns></returns>
-        PaswordProjectDataStor GetPaswordProjectDataStor();
+        PaswordProjectDataStor GetPaswordProjectDataStor(String password);
     }
 }

@@ -19,7 +19,6 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.DataStor.Impl
         protected IFileReadWriteHelper FileReadWrite;
         protected ISerializationHelper<PaswordProjectDataStor> SerializationHelper;
         protected PaswordProjectDataStor dataStor;
-        protected AesCryptoHelper aesCryptoHelper;
 
         public PasswordProjectStor(ISerializationHelper<PaswordProjectDataStor> serializationHelper
             , ICryptor cryptor
@@ -30,7 +29,6 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.DataStor.Impl
             Cryptor = cryptor;
             Sign = sign;
             FileReadWrite = fileReadWrite;
-            aesCryptoHelper = new AesCryptoHelper();
         }
 
         public void SaveChanges(PaswordProjectDataStor dataStor)
@@ -38,49 +36,32 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.DataStor.Impl
             /**
              * 序列化数据
              * 对数据加密
-             * 对数据签名
-             * 将数据保存进文件
+             * 将密文写入文件
              * */
             if (dataStor == null) return;
             String message = SerializationHelper.Serialization(dataStor);
-            if (message == null || message.Length <= 0) return;
-            var bytes = Cryptor.Encryptor(Encoding.UTF8.GetBytes(message));
-
-            String key = Forms.MainForm.Sign.Length > 64
-                        ? Forms.MainForm.Sign.Substring(0, 64)
-                        : Forms.MainForm.Sign.PadRight(64, '0');
-
-            bytes = Sign.Sign(bytes, Encoding.UTF8.GetBytes(key));
-
+            var bytes = Encryptor(Encoding.UTF8.GetBytes(message));
             FileReadWrite.Write(Convert.ToBase64String(bytes));
         }
 
-        public PaswordProjectDataStor GetPaswordProjectDataStor()
+        public PaswordProjectDataStor GetPaswordProjectDataStor(String password)
         {
             if (dataStor != null) return dataStor;
+            dataStor = new PaswordProjectDataStor();
+            dataStor.UpdatePassword(password);
             /**
              * 从文件中获取数据
-             * 验证签名
              * 对数据解密
              * 对数据反序列化
              * */
             String message = FileReadWrite.Read();
-            if (message == null || message.Length <= 0) return null;
 
-            String key =Forms.MainForm.Sign.Length > 64
-                        ? Forms.MainForm.Sign.Substring(0, 64)
-                        : Forms.MainForm.Sign.PadRight(64,'0');
-            byte[] outBytes;
+            if (message == null || message.Length <= 0) return dataStor;
 
-            if (!Sign.Verify(Convert.FromBase64String(message), Encoding.UTF8.GetBytes(key), out outBytes))
-            {
-                throw new Exception("密码数据文件被篡改！");
-            }
-
-            var bytes = Cryptor.Decryptor(outBytes);
+            var bytes = Decryptor(Convert.FromBase64String(message));
 
             message = Encoding.UTF8.GetString(bytes);
-            dataStor= SerializationHelper.Deserialization(message);
+            dataStor = SerializationHelper.Deserialization(message);
 
             if (dataStor == null) dataStor = new PaswordProjectDataStor();
 
@@ -91,16 +72,37 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.DataStor.Impl
         {
             /**
             * 对数据加密
+            * 用密码加密数据
             * 对数据签名
-            * 将数据保存进文件
             * */
             bytes = Cryptor.Encryptor(bytes);
+            bytes = AesCryptoHelper.Encrypt(bytes, GetKeyBytesByPasword(), null);
             bytes = Sign.Sign(bytes, GetSignBytes());
-            return null;
+            return bytes;
         }
         protected virtual byte[] Decryptor(byte[] bytes)
         {
-            return null;
+            /**
+            * 验证签名
+            * 用密码解密数据
+            * 对数据码解
+            * */
+
+            if (!Sign.Verify(bytes, GetSignBytes(), out bytes))
+            {
+                throw new Exception("密文被篡改！");
+            }
+
+            try
+            {
+                bytes = AesCryptoHelper.Decrypt(bytes, GetKeyBytesByPasword(), null);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("密码不正确！", ex.InnerException);
+            }
+            bytes= Cryptor.Decryptor(bytes);
+            return bytes;
         }
 
         protected virtual String GetKeyByPasword()

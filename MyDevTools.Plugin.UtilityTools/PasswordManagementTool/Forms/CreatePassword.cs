@@ -13,11 +13,13 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
 {
     public partial class CreatePassword : Form
     {
-        internal IPassworkProjectRepository repository { get; private set; }
-        public CreatePassword(IPassworkProjectRepository repository)
+        Func<String, Boolean> OkFunc = null;
+        Func<Boolean> CancelFunc = null;
+        public CreatePassword(Func<String, Boolean> okFunc, Func<Boolean> cancelFunc = null)
         {
             InitializeComponent();
-            this.repository = repository;
+            OkFunc = okFunc;
+            CancelFunc = cancelFunc;
             StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -35,13 +37,18 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
                 return;
             }
 
-            repository.UpdatePassword(password);
-            Close();
+            if (OkFunc == null || OkFunc(password))
+            {
+                Close();
+            }
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
-            Close();
+            if (CancelFunc == null || CancelFunc())
+            {
+                Close();
+            }
         }
     }
 }

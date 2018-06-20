@@ -46,10 +46,13 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
             InitializeComponent();
             onProjectDetailActionChange += MainForm_onProjectDetailActionChange;
             ProjectDetailAction = DetailAction.Display;
-            repository = Factory.CreatePassworkProjectRepository();
-            if (String.IsNullOrEmpty(repository.GetPassword()))
+            if (!Factory.CreateDataStorFileReadWriteHelper().HasContent())
             {
-                new CreatePassword(repository) { TopMost=true}.Show();
+                new CreatePassword(p=>
+                {
+                    repository = Factory.CreatePassworkProjectRepository(p);
+                    return true;
+                }) { TopMost=true}.Show();
             }
             else
             {
@@ -63,6 +66,7 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
             {
                 try
                 {
+                    repository = Factory.CreatePassworkProjectRepository(p);
                     if (!repository.VerificationPassword(p))
                     {
                         MessageBox.Show("密码不正确！", "温馨提示");
@@ -410,6 +414,7 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
 
         private void ProjectList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ProjectList.SelectedItem == null) return;
             SelectPassworkProject = repository.GetPassworkProject(ProjectList.SelectedItem.ToString());
             RefreshDetailView();
             ProjectDetailAction = DetailAction.Display;

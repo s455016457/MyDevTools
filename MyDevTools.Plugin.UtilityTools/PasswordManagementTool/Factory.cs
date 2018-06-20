@@ -22,9 +22,9 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool
         /// 创建密码项目资源库
         /// </summary>
         /// <returns></returns>
-        public static IPassworkProjectRepository CreatePassworkProjectRepository()
+        public static IPassworkProjectRepository CreatePassworkProjectRepository(String password)
         {
-            return new PasswordProjectRepository(CreatePasswordProjectStor());
+            return new PasswordProjectRepository(CreatePasswordProjectStor(), password);
         }
 
         /// <summary>
@@ -35,6 +35,11 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool
         /// <returns></returns>
         public static IFileReadWriteHelper CreateFileReadWriteHelper(String directoryPath, String fileName) {
             return new FileReadWriteHelper(directoryPath, fileName);
+        }
+
+        public static IFileReadWriteHelper CreateDataStorFileReadWriteHelper()
+        {
+            return CreateFileReadWriteHelper(privateKeyDirectoryPath, dataFileName);
         }
 
         /// <summary>
@@ -72,7 +77,7 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool
             return new PasswordProjectStor(CreateSerializationHelper<PaswordProjectDataStor>()
                 , CreateCryptor()
                 , CreateSign()
-                , CreateFileReadWriteHelper(privateKeyDirectoryPath, dataFileName));
+                , CreateDataStorFileReadWriteHelper());
         }
     }
 }

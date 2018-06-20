@@ -12,10 +12,10 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Repository.Impl
         private IPasswordProjectStor PasswordProjectStor;
         private PaswordProjectDataStor PaswordProjectData;
 
-        public PasswordProjectRepository(IPasswordProjectStor passwordProjectStor)
+        public PasswordProjectRepository(IPasswordProjectStor passwordProjectStor, String password)
         {
             PasswordProjectStor = passwordProjectStor;
-            PaswordProjectData = PasswordProjectStor.GetPaswordProjectDataStor();
+            PaswordProjectData = PasswordProjectStor.GetPaswordProjectDataStor(password);
             if (PaswordProjectData == null) PaswordProjectData = new PaswordProjectDataStor();
             PassworkProjects = PaswordProjectData.PassworkProjects;
             if (PassworkProjects == null)

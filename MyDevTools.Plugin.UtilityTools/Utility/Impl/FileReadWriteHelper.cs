@@ -80,5 +80,14 @@ namespace MyDevTools.Plugin.UtilityTools.Utility.Impl
                 }
             }
         }
+
+        public bool HasContent()
+        {
+            if (!File.Exists(FilePath)) return false;
+            using (FileStream stream = File.OpenWrite(FilePath))
+            {
+                return stream.Length > 0;
+            }
+        }
     }
 }
