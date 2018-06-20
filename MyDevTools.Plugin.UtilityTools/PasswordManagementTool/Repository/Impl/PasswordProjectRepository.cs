@@ -11,13 +11,11 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Repository.Impl
         private List<PasswordProject> PassworkProjects;
         private IPasswordProjectStor PasswordProjectStor;
         private PaswordProjectDataStor PaswordProjectData;
-        private String sign;
 
-        public PasswordProjectRepository(IPasswordProjectStor passwordProjectStor,String sign)
+        public PasswordProjectRepository(IPasswordProjectStor passwordProjectStor)
         {
-            this.sign = sign;
             PasswordProjectStor = passwordProjectStor;
-            PaswordProjectData = PasswordProjectStor.GetPaswordProjectDataStor(this.sign);
+            PaswordProjectData = PasswordProjectStor.GetPaswordProjectDataStor();
             if (PaswordProjectData == null) PaswordProjectData = new PaswordProjectDataStor();
             PassworkProjects = PaswordProjectData.PassworkProjects;
             if (PassworkProjects == null)
@@ -75,7 +73,7 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Repository.Impl
 
         public void SaveChanges()
         {
-            PasswordProjectStor.SaveChanges(PaswordProjectData, sign);
+            PasswordProjectStor.SaveChanges(PaswordProjectData);
         }
     }
 }

@@ -13,11 +13,11 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.DataStor
         /// 保存所有变更
         /// </summary>
         /// <param name="PassworkProjects"></param>
-        void SaveChanges(PaswordProjectDataStor PassworkProjects,String sign);
+        void SaveChanges(PaswordProjectDataStor PassworkProjects);
         /// <summary>
         /// 获取密码项目列表
         /// </summary>
         /// <returns></returns>
-        PaswordProjectDataStor GetPaswordProjectDataStor(String sign);
+        PaswordProjectDataStor GetPaswordProjectDataStor();
     }
 }

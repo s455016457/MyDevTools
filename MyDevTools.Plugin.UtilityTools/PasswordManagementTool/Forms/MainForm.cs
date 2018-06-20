@@ -46,7 +46,7 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
             InitializeComponent();
             onProjectDetailActionChange += MainForm_onProjectDetailActionChange;
             ProjectDetailAction = DetailAction.Display;
-            repository = Factory.CreatePassworkProjectRepository(Sign);
+            repository = Factory.CreatePassworkProjectRepository();
             if (String.IsNullOrEmpty(repository.GetPassword()))
             {
                 new CreatePassword(repository) { TopMost=true}.Show();

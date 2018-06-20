@@ -22,9 +22,9 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool
         /// 创建密码项目资源库
         /// </summary>
         /// <returns></returns>
-        public static IPassworkProjectRepository CreatePassworkProjectRepository(String sign)
+        public static IPassworkProjectRepository CreatePassworkProjectRepository()
         {
-            return new PasswordProjectRepository(CreatePasswordProjectStor(), sign);
+            return new PasswordProjectRepository(CreatePasswordProjectStor());
         }
 
         /// <summary>
