@@ -31,7 +31,7 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.DataStor.Impl
             FileReadWrite = fileReadWrite;
         }
 
-        public void SaveChanges(PaswordProjectDataStor dataStor)
+        public void SaveChanges()
         {
             /**
              * 序列化数据

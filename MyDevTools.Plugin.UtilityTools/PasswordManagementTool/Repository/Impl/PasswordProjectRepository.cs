@@ -73,7 +73,7 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Repository.Impl
 
         public void SaveChanges()
         {
-            PasswordProjectStor.SaveChanges(PaswordProjectData);
+            PasswordProjectStor.SaveChanges();
         }
     }
 }

@@ -270,11 +270,18 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
                     MessageBox.Show("项目名称不能为空！", "温馨提示");
                     return false;
                 }
-                SelectPassworkProject = repository.CreatePassworkProject(p, String.Empty);
-                ProjectList.Items.Add(p);
-                ProjectList.SelectedItem = p;
-                ProjectDetailAction = DetailAction.Edit;
-
+                try
+                {
+                    SelectPassworkProject = repository.CreatePassworkProject(p, String.Empty);
+                    ProjectList.Items.Add(p);
+                    ProjectList.SelectedItem = p;
+                    ProjectDetailAction = DetailAction.Edit;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "温馨提示");
+                    return false;
+                }
                 return true;
             });
             confirmForm.Show();
