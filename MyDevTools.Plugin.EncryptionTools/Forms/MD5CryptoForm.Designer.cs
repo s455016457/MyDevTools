@@ -35,6 +35,8 @@
             this.button_Md5Crypto = new System.Windows.Forms.Button();
             this.button_HashCrypto = new System.Windows.Forms.Button();
             this.button_CopyResult = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox_CiphertextDisplayFormat = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -60,7 +62,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 120);
+            this.label2.Location = new System.Drawing.Point(13, 154);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 2;
@@ -70,7 +72,7 @@
             // 
             this.textBox_Result.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Result.Location = new System.Drawing.Point(72, 105);
+            this.textBox_Result.Location = new System.Drawing.Point(72, 139);
             this.textBox_Result.Multiline = true;
             this.textBox_Result.Name = "textBox_Result";
             this.textBox_Result.ReadOnly = true;
@@ -80,7 +82,7 @@
             // 
             // button_Md5Crypto
             // 
-            this.button_Md5Crypto.Location = new System.Drawing.Point(72, 197);
+            this.button_Md5Crypto.Location = new System.Drawing.Point(72, 231);
             this.button_Md5Crypto.Name = "button_Md5Crypto";
             this.button_Md5Crypto.Size = new System.Drawing.Size(75, 23);
             this.button_Md5Crypto.TabIndex = 4;
@@ -90,7 +92,7 @@
             // 
             // button_HashCrypto
             // 
-            this.button_HashCrypto.Location = new System.Drawing.Point(153, 197);
+            this.button_HashCrypto.Location = new System.Drawing.Point(153, 231);
             this.button_HashCrypto.Name = "button_HashCrypto";
             this.button_HashCrypto.Size = new System.Drawing.Size(75, 23);
             this.button_HashCrypto.TabIndex = 5;
@@ -100,7 +102,7 @@
             // 
             // button_CopyResult
             // 
-            this.button_CopyResult.Location = new System.Drawing.Point(234, 197);
+            this.button_CopyResult.Location = new System.Drawing.Point(234, 231);
             this.button_CopyResult.Name = "button_CopyResult";
             this.button_CopyResult.Size = new System.Drawing.Size(75, 23);
             this.button_CopyResult.TabIndex = 6;
@@ -108,11 +110,33 @@
             this.button_CopyResult.UseVisualStyleBackColor = true;
             this.button_CopyResult.Click += new System.EventHandler(this.button_CopyResult_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "显示格式";
+            // 
+            // comboBox_CiphertextDisplayFormat
+            // 
+            this.comboBox_CiphertextDisplayFormat.FormattingEnabled = true;
+            this.comboBox_CiphertextDisplayFormat.Items.AddRange(new object[] {
+            "Base64String",
+            "BitString"});
+            this.comboBox_CiphertextDisplayFormat.Location = new System.Drawing.Point(73, 105);
+            this.comboBox_CiphertextDisplayFormat.Name = "comboBox_CiphertextDisplayFormat";
+            this.comboBox_CiphertextDisplayFormat.Size = new System.Drawing.Size(222, 20);
+            this.comboBox_CiphertextDisplayFormat.TabIndex = 8;
+            // 
             // MD5CryptoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 230);
+            this.ClientSize = new System.Drawing.Size(593, 260);
+            this.Controls.Add(this.comboBox_CiphertextDisplayFormat);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.button_CopyResult);
             this.Controls.Add(this.button_HashCrypto);
             this.Controls.Add(this.button_Md5Crypto);
@@ -136,5 +160,7 @@
         private System.Windows.Forms.Button button_Md5Crypto;
         private System.Windows.Forms.Button button_HashCrypto;
         private System.Windows.Forms.Button button_CopyResult;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox_CiphertextDisplayFormat;
     }
 }

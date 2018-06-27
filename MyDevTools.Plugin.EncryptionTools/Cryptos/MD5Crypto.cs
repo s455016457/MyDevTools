@@ -10,14 +10,14 @@ namespace MyDevTools.Plugin.EncryptionTools.Cryptos
 {
     public class MD5Crypto
     {
-        public static byte[] Encrypto(byte[] input)
+        public static byte[] Encryptor(byte[] input)
         {
             return new MD5CryptoServiceProvider().ComputeHash(input);
         }
 
-        public static String Encrypto(String input,String separator="")
+        public static String Encryptor(String input,String separator="")
         {
-            return Encrypto(Encoding.UTF8.GetBytes(input)).ToBitString(separator);
+            return Encryptor(Encoding.UTF8.GetBytes(input)).ToBitString(separator);
         }
 
         public static byte[] Hash(byte[] input)

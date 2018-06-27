@@ -1,4 +1,5 @@
 ﻿using MyDevTools.Plugin.EncryptionTools.Cryptos;
+using MyDevTools.Plugin.EncryptionTools.Extends;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,16 +17,17 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
         public MD5CryptoForm()
         {
             InitializeComponent();
+            comboBox_CiphertextDisplayFormat.SelectedIndex = 0;
         }
 
         private void button_Md5Crypto_Click(object sender, EventArgs e)
         {
-            textBox_Result.Text = MD5Crypto.Encrypto(textBox_body.Text.Trim());
+            DisplayCiphertexts(MD5Crypto.Encryptor(Encoding.UTF8.GetBytes(textBox_body.Text.Trim())));
         }
 
         private void button_HashCrypto_Click(object sender, EventArgs e)
         {
-            textBox_Result.Text = MD5Crypto.Hash(textBox_body.Text.Trim());
+            DisplayCiphertexts(MD5Crypto.Hash(Encoding.UTF8.GetBytes(textBox_body.Text.Trim())));
         }
 
         private void button_CopyResult_Click(object sender, EventArgs e)
@@ -39,6 +41,21 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
             {
                 (sender as TextBox).SelectAll();
                 e.Handled = true;
+            }
+        }
+        private void DisplayCiphertexts(byte[] bytes)
+        {
+            if (comboBox_CiphertextDisplayFormat.SelectedItem.ToString().Equals("Base64String", StringComparison.CurrentCultureIgnoreCase))
+            {
+                textBox_Result.Text = Convert.ToBase64String(bytes);
+            }
+            else if (comboBox_CiphertextDisplayFormat.SelectedItem.ToString().Equals("BitString", StringComparison.CurrentCultureIgnoreCase))
+            {
+                textBox_Result.Text = bytes.ToBitString("");
+            }
+            else
+            {
+                MessageBox.Show("未知的显示格式：" + comboBox_CiphertextDisplayFormat.SelectedItem, "错误");
             }
         }
     }

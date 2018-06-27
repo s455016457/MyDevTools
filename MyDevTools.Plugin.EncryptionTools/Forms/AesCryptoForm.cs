@@ -120,7 +120,7 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
                 textBox_Key.Text = Convert.ToBase64String(keyValue.Key);
                 if (keyValue.Value != null)
                 {
-                    textBox_IV.Text = Convert.ToString(keyValue.Value);
+                    textBox_IV.Text = Convert.ToBase64String(keyValue.Value);
                 }
             }
             else if (comboBox_KeyDisplayFormat.SelectedItem.ToString().Equals("BitString", StringComparison.CurrentCultureIgnoreCase))
@@ -143,7 +143,7 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
             String key = textBox_Key.Text.Trim(), iv = textBox_IV.Text.Trim();
             if (isIvEncrypt() && String.IsNullOrWhiteSpace(iv))
             {
-                MessageBox.Show("便宜量不能为空！", "温馨提示");
+                MessageBox.Show("偏移量不能为空！", "温馨提示");
             }
 
             if (comboBox_KeyDisplayFormat.SelectedItem.ToString().Equals("Base64String", StringComparison.CurrentCultureIgnoreCase))
@@ -189,7 +189,7 @@ namespace MyDevTools.Plugin.EncryptionTools.Forms
 
         private byte[] CiphertextsToBytes()
         {
-            String Ciphertexts = textBox_Result.Text.Trim();
+            String Ciphertexts = textBox_Body.Text.Trim();
             if (comboBox_CiphertextDisplayFormat.SelectedItem.ToString().Equals("Base64String", StringComparison.CurrentCultureIgnoreCase))
                 return Convert.FromBase64String(Ciphertexts);
 
