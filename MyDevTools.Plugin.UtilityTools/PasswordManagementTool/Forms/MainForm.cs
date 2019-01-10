@@ -46,13 +46,19 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
             InitializeComponent();
             onProjectDetailActionChange += MainForm_onProjectDetailActionChange;
             ProjectDetailAction = DetailAction.Display;
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
             if (!Factory.CreateDataStorFileReadWriteHelper().HasContent())
             {
-                new CreatePassword(p=>
+                new CreatePassword(p =>
                 {
                     repository = Factory.CreatePassworkProjectRepository(p);
                     return true;
-                }) { TopMost=true}.Show();
+                })
+                { TopMost = true }.Show();
             }
             else
             {

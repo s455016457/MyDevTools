@@ -75,8 +75,10 @@
             // 
             // ConfirmForm
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_Cancel;
             this.ClientSize = new System.Drawing.Size(361, 108);
             this.ControlBox = false;
             this.Controls.Add(this.btn_Cancel);
@@ -87,6 +89,7 @@
             this.MinimizeBox = false;
             this.Name = "ConfirmForm";
             this.Text = "ConfirmForm";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

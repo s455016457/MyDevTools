@@ -39,6 +39,11 @@ namespace MyDevTools.Plugin.UtilityTools.PasswordManagementTool.Forms
             {
                 Close();
             }
-        }        
+        }
+        protected override void OnShown(EventArgs e)
+        {
+            textBoxValue.Select(0, 0);
+            base.OnShown(e);
+        }
     }
 }
