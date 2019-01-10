@@ -53,6 +53,12 @@
     <Compile Include="Extends\ByteExtend.cs" />
     <Compile Include="Extends\IntExtend.cs" />
     <Compile Include="Extends\StringExtend.cs" />
+    <Compile Include="Forms\CreateGuidForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateGuidForm.Designer.cs">
+      <DependentUpon>CreateGuidForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MD5CryptoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,7 @@
     <Compile Include="Forms\RSACryptoChatForm.Designer.cs">
       <DependentUpon>RSACryptoChatForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\CreateGuidPlugin.cs" />
     <Compile Include="Plugins\MD5CryptorPlugin.cs" />
     <Compile Include="Plugins\RijndaelCryptoPlugin.cs" />
     <Compile Include="Plugins\RC2CryptorPlugin.cs" />
@@ -127,6 +134,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\CreateGuidForm.resx">
+      <DependentUpon>CreateGuidForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MD5CryptoForm.resx">
       <DependentUpon>MD5CryptoForm.cs</DependentUpon>
     </EmbeddedResource>

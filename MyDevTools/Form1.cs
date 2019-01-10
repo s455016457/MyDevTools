@@ -27,6 +27,9 @@ namespace MyDevTools
             FillListView();
             GroupToolStripMenuItem.CheckedChanged += GroupToolStripMenuItem_CheckedChanged;
             Form1.SetWindowTheme(this.lvPlugin.Handle, "Explorer", null);
+            notifyIcon1.BalloonTipText = "工具集";
+            notifyIcon1.BalloonTipTitle = "工具集";
+            notifyIcon1.ContextMenuStrip = contextMenuStrip2;
         }
 
         private void SetPluginList()
@@ -158,6 +161,35 @@ namespace MyDevTools
                     MessageBox.Show(ex.ToString(), "启动工具失败");
                 }
             }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
+        }
+
+        private void contextMenuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            ToolStripItem menuItem = e.ClickedItem;
+            if (menuItem == null) return;
+
+            switch (menuItem.Text) {
+                case "显示":
+                    this.Show();
+                    break;
+                case "隐藏":
+                    this.Hide();
+                    break;
+                case "退出":
+                    this.Dispose(true);
+                    break;
+            }
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
         }
     }
 }
