@@ -22,6 +22,7 @@ namespace MyDevTools
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 bool createdNew = false;
+                ErrorReport.Attach();
                 using (Mutex mutext = new Mutex(true, appIdentifier, out createdNew))
                 {
                     if (createdNew)

@@ -55,8 +55,12 @@
             this.显示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.隐藏toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelUAC = new System.Windows.Forms.Panel();
+            this.lbUAC = new System.Windows.Forms.Label();
+            this.btnStartWithAdmin = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
+            this.panelUAC.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -254,20 +258,56 @@
             this.退出ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.退出ToolStripMenuItem.Text = "退出";
             // 
+            // panelUAC
+            // 
+            this.panelUAC.Controls.Add(this.lbUAC);
+            this.panelUAC.Controls.Add(this.btnStartWithAdmin);
+            this.panelUAC.Location = new System.Drawing.Point(730, 63);
+            this.panelUAC.Name = "panelUAC";
+            this.panelUAC.Size = new System.Drawing.Size(346, 254);
+            this.panelUAC.TabIndex = 6;
+            this.panelUAC.Visible = false;
+            // 
+            // lbUAC
+            // 
+            this.lbUAC.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbUAC.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbUAC.Location = new System.Drawing.Point(83, 35);
+            this.lbUAC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbUAC.Name = "lbUAC";
+            this.lbUAC.Size = new System.Drawing.Size(199, 30);
+            this.lbUAC.TabIndex = 2;
+            this.lbUAC.Text = "需要管理员权限权限";
+            this.lbUAC.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnStartWithAdmin
+            // 
+            this.btnStartWithAdmin.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnStartWithAdmin.Location = new System.Drawing.Point(87, 96);
+            this.btnStartWithAdmin.Name = "btnStartWithAdmin";
+            this.btnStartWithAdmin.Size = new System.Drawing.Size(195, 41);
+            this.btnStartWithAdmin.TabIndex = 0;
+            this.btnStartWithAdmin.Text = "以管理员方式重新运行";
+            this.btnStartWithAdmin.UseVisualStyleBackColor = true;
+            this.btnStartWithAdmin.Click += new System.EventHandler(this.btnStartWithAdmin_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 394);
+            this.Controls.Add(this.panelUAC);
             this.Controls.Add(this.lvPlugin);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "工具集";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.contextMenuStrip2.ResumeLayout(false);
+            this.panelUAC.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,6 +338,9 @@
         private System.Windows.Forms.ToolStripMenuItem 显示ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 隐藏toolStripMenuItem;
+        private System.Windows.Forms.Panel panelUAC;
+        private System.Windows.Forms.Label lbUAC;
+        private System.Windows.Forms.Button btnStartWithAdmin;
     }
 }
 

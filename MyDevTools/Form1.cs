@@ -10,6 +10,9 @@ using MyDevTools.Plugin.Interfaces;
 using LogProvider.Factories;
 using LogProvider.Interfaces;
 using LogProvider;
+using System.Security.Principal;
+using System.Diagnostics;
+using System.IO;
 
 namespace MyDevTools
 {
@@ -182,7 +185,7 @@ namespace MyDevTools
                     this.Hide();
                     break;
                 case "退出":
-                    this.Dispose(true);
+                    Environment.Exit(Environment.ExitCode);
                     break;
             }
         }
@@ -190,6 +193,64 @@ namespace MyDevTools
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.Show();
+        }
+
+        public static Boolean IsAdministrator()
+        {
+            Boolean result;
+            if (Environment.OSVersion.Version.Major >= 6)
+            {
+                WindowsIdentity current = WindowsIdentity.GetCurrent();
+                WindowsPrincipal windowsPrincipal = new WindowsPrincipal(current);
+                result = windowsPrincipal.IsInRole(WindowsBuiltInRole.Administrator);
+            }
+            else
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        private void btnStartWithAdmin_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo();
+            processStartInfo.WorkingDirectory = Application.StartupPath;
+            processStartInfo.FileName = Path.GetFileName(Application.ExecutablePath);
+            processStartInfo.Verb = "runas";
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            if (commandLineArgs.Length > 1)
+            {
+                String text = "";
+                for (Int32 i = 1; i < commandLineArgs.Length; i++)
+                {
+                    text += commandLineArgs[i];
+                }
+                processStartInfo.Arguments = text;
+            }
+            try
+            {
+                Process.Start(processStartInfo);
+                Environment.Exit(Environment.ExitCode);
+            }
+            catch(Exception ex)
+            {
+                Environment.Exit(Environment.ExitCode);
+            }
+        }
+
+        private void MainForm_Load(Object sender, EventArgs e)
+        {
+            if (!IsAdministrator())
+            {
+                panelUAC.Dock = DockStyle.Fill;
+                panelUAC.BringToFront();
+                panelUAC.Visible = true;
+            }
+            else
+            {
+                this.Text += "(管理员)";
+            }
         }
     }
 }

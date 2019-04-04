@@ -120,6 +120,8 @@
     <Compile Include="PasswordManagementTool\Factory.cs" />
     <Compile Include="PasswordManagementTool\Repository\Impl\PasswordProjectRepository.cs" />
     <Compile Include="PasswordManagementTool\Repository\IPassworkProjectRepository.cs" />
+    <Compile Include="Plugins\WebSocketClientPlugin.cs" />
+    <Compile Include="Plugins\WebSocketServicePlugin.cs" />
     <Compile Include="Plugins\ZXingPlugin.cs" />
     <Compile Include="Plugins\QRCoderPlugin.cs" />
     <Compile Include="Plugins\DownLoadImagePlugin.cs" />
@@ -160,6 +162,20 @@
     </Compile>
     <Compile Include="MyZXing\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebSocket\WebSocketClient.cs" />
+    <Compile Include="WebSocket\WebSocketClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebSocket\WebSocketClientForm.Designer.cs">
+      <DependentUpon>WebSocketClientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebSocket\WebSocketService.cs" />
+    <Compile Include="WebSocket\WebSocketServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebSocket\WebSocketServiceForm.Designer.cs">
+      <DependentUpon>WebSocketServiceForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +231,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyZXing\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebSocket\WebSocketClientForm.resx">
+      <DependentUpon>WebSocketClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WebSocket\WebSocketServiceForm.resx">
+      <DependentUpon>WebSocketServiceForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
