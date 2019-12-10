@@ -32,6 +32,7 @@
             this.btnDecodeQRCode = new System.Windows.Forms.Button();
             this.btnEncodeBarCode = new System.Windows.Forms.Button();
             this.btnDecodeBarCode = new System.Windows.Forms.Button();
+            this.btnDecodeQRCoderByCam = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnEncodeQRCode
@@ -74,13 +75,24 @@
             this.btnDecodeBarCode.UseVisualStyleBackColor = true;
             this.btnDecodeBarCode.Click += new System.EventHandler(this.btnDecodeBarCode_Click);
             // 
+            // btnDecodeQRCoderByCam
+            // 
+            this.btnDecodeQRCoderByCam.Location = new System.Drawing.Point(4, 192);
+            this.btnDecodeQRCoderByCam.Name = "btnDecodeQRCoderByCam";
+            this.btnDecodeQRCoderByCam.Size = new System.Drawing.Size(272, 39);
+            this.btnDecodeQRCoderByCam.TabIndex = 1;
+            this.btnDecodeQRCoderByCam.Text = "相机识别二维码";
+            this.btnDecodeQRCoderByCam.UseVisualStyleBackColor = true;
+            this.btnDecodeQRCoderByCam.Click += new System.EventHandler(this.btnDecodeQRCoderByCam_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(279, 197);
+            this.ClientSize = new System.Drawing.Size(279, 238);
             this.Controls.Add(this.btnDecodeBarCode);
             this.Controls.Add(this.btnEncodeBarCode);
+            this.Controls.Add(this.btnDecodeQRCoderByCam);
             this.Controls.Add(this.btnDecodeQRCode);
             this.Controls.Add(this.btnEncodeQRCode);
             this.Name = "MainForm";
@@ -95,5 +107,6 @@
         private System.Windows.Forms.Button btnDecodeQRCode;
         private System.Windows.Forms.Button btnEncodeBarCode;
         private System.Windows.Forms.Button btnDecodeBarCode;
+        private System.Windows.Forms.Button btnDecodeQRCoderByCam;
     }
 }

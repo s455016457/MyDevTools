@@ -44,5 +44,14 @@ namespace MyDevTools.Plugin.UtilityTools.MyZXing
                 StartPosition = FormStartPosition.CenterScreen
             }.Show();
         }
+
+        private void btnDecodeQRCoderByCam_Click(object sender, EventArgs e)
+        {
+            new DecodeQRCoderByCam
+            {
+                Text = btnEncodeBarCode.Text,
+                StartPosition = FormStartPosition.CenterScreen
+            }.Show();
+        }
     }
 }

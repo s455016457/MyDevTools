@@ -21,5 +21,6 @@ namespace MyDevTools.Plugin
         public const string Decompile = "反编译";
         public const string Utility = "小工具";
         public const string Crypto = "算法";
+        public const string Math = "数学";
     }
 }

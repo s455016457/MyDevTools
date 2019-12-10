@@ -139,7 +139,9 @@ namespace MyDevTools.Plugin.UtilityTools.WebSocket
 
             HttpListener.Start();
 
-            ThreadPool.QueueUserWorkItem(new WaitCallback(p => CreateWebSocket(p as HttpListener)), HttpListener);
+            //ThreadPool.QueueUserWorkItem(new WaitCallback(p => CreateWebSocket(p as HttpListener)), HttpListener);
+            var task = new Task(()=> { CreateWebSocket(HttpListener); }, CancellationTokenSource.Token);
+            task.Start();
             if (OnWebSocketServiceStart != null)
             {
                 OnWebSocketServiceStart.Invoke(this, HttpListener);
@@ -199,10 +201,21 @@ namespace MyDevTools.Plugin.UtilityTools.WebSocket
         /// <param name="httpListener"></param>
         private void CreateWebSocket(HttpListener httpListener)
         {
+            if (httpListener == null)
+                throw new Exception("HttpListener未创建");
             if (!httpListener.IsListening)
                 throw new Exception("HttpListener未启动");
-            HttpListenerContext listenerContext = httpListener.GetContext();
-
+            HttpListenerContext listenerContext = null;
+            //try
+            //{
+                listenerContext = httpListener.GetContext();
+            //}
+            //catch (Exception)
+            //{
+            //    //if (httpListener != null&& httpListener.IsListening)
+            //        CreateWebSocket(httpListener);
+            //    return;
+            //}
             if (OnAuthentication != null)
             {
                 foreach (OnAuthentication item in OnAuthentication.GetInvocationList())

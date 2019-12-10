@@ -63,6 +63,7 @@
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestJSConfusion.cs" />
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestJsonSerializationHelper.cs" />
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\Tranfer.cs" />
+    <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestMathHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

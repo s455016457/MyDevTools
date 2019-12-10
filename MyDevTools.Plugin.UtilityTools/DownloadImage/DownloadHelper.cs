@@ -18,16 +18,18 @@ namespace MyDevTools.Plugin.UtilityTools.DownloadImage
         {
             httpClient = new HttpClient();
 
+            var bytes = httpClient.GetByteArrayAsync(Url).Result;
             Stream stream = httpClient.GetStreamAsync(Url).Result;
             String fileName = String.Format("{0}.{1}", Guid.NewGuid().ToString("N"), fileType);
             using (FileStream file = File.Create(Path.Combine(SavePath, fileName)))
             {
-                byte[] buffer = new byte[102400];
-                int length = 0;
-                while ((length = stream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    file.Write(buffer, 0, length);
-                }
+                file.Write(bytes, 0, bytes.Length);
+                //byte[] buffer = new byte[102400];
+                //int length = 0;
+                //while ((length = stream.Read(buffer, 0, buffer.Length)) > 0)
+                //{
+                //    file.Write(buffer, 0, length);
+                //}
             }
         }
     }

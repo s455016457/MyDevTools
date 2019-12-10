@@ -17,15 +17,27 @@ namespace MyDevTools.Plugin.UtilityTools.WebSocket
         bool serverIsStart = false;
         WebSocketService WebSocketService = null;
         StringWriter stringWriter = new StringWriter();
+        Timer timer = new Timer();
         public WebSocketServiceForm()
         {
             InitializeComponent();
             setButton1Text();
             Console.SetOut(stringWriter);
-            Timer timer = new Timer();
             timer.Interval = 500;
             timer.Tick += Timer_Tick;
             timer.Start();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            timer.Stop();
+            timer.Dispose();
+            if (WebSocketService != null)
+            {
+                WebSocketService.Dispose();
+                WebSocketService = null;
+            }
+            base.OnClosed(e);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -57,7 +69,7 @@ namespace MyDevTools.Plugin.UtilityTools.WebSocket
                 button1.Enabled = true;
                 return;
             }
-            if(string.IsNullOrEmpty(port))
+            if (string.IsNullOrEmpty(port))
             {
                 errorProvider1.SetError(textBox_Port, "请输入服务监控的端口");
                 button1.Enabled = true;
@@ -139,7 +151,7 @@ namespace MyDevTools.Plugin.UtilityTools.WebSocket
             if (webSocketContext.HttpListenerWebSocketContext.CookieCollection != null)
             {
                 Console.WriteLine("获取到cookie：");
-                foreach(Cookie cookie in webSocketContext.HttpListenerWebSocketContext.CookieCollection)
+                foreach (Cookie cookie in webSocketContext.HttpListenerWebSocketContext.CookieCollection)
                 {
                     Console.WriteLine($"Name:{cookie.Name}  Value:{cookie.Value}  Domain:{cookie.Domain}");
                 }

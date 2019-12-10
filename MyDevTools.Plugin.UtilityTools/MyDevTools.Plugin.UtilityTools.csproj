@@ -68,11 +68,24 @@
     <Compile Include="JS混淆\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maths\GCDForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maths\GCDForm.Designer.cs">
+      <DependentUpon>GCDForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maths\MathHelper.cs" />
     <Compile Include="MyZXing\DecodeBarCode.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MyZXing\DecodeBarCode.Designer.cs">
       <DependentUpon>DecodeBarCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyZXing\DecodeQRCoderByCam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyZXing\DecodeQRCoderByCam.Designer.cs">
+      <DependentUpon>DecodeQRCoderByCam.cs</DependentUpon>
     </Compile>
     <Compile Include="MyZXing\EncodeBarCode.cs">
       <SubType>Form</SubType>
@@ -120,6 +133,7 @@
     <Compile Include="PasswordManagementTool\Factory.cs" />
     <Compile Include="PasswordManagementTool\Repository\Impl\PasswordProjectRepository.cs" />
     <Compile Include="PasswordManagementTool\Repository\IPassworkProjectRepository.cs" />
+    <Compile Include="Plugins\GCDPlugin.cs" />
     <Compile Include="Plugins\WebSocketClientPlugin.cs" />
     <Compile Include="Plugins\WebSocketServicePlugin.cs" />
     <Compile Include="Plugins\ZXingPlugin.cs" />
@@ -140,6 +154,7 @@
     </Compile>
     <Compile Include="Utility\AesCryptoHelper.cs" />
     <Compile Include="Utility\ByteExtend.cs" />
+    <Compile Include="Utility\CamWorker.cs" />
     <Compile Include="Utility\CryptoTransform.cs" />
     <Compile Include="Utility\Impl\AESCryptor.cs" />
     <Compile Include="Utility\Impl\FileReadWriteHelper.cs" />
@@ -198,8 +213,14 @@
     <EmbeddedResource Include="JS混淆\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Maths\GCDForm.resx">
+      <DependentUpon>GCDForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyZXing\DecodeBarCode.resx">
       <DependentUpon>DecodeBarCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyZXing\DecodeQRCoderByCam.resx">
+      <DependentUpon>DecodeQRCoderByCam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyZXing\EncodeBarCode.resx">
       <DependentUpon>EncodeBarCode.cs</DependentUpon>
