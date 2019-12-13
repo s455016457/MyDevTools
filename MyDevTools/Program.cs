@@ -32,9 +32,14 @@ namespace MyDevTools
                     }
                     else
                     {
+                        //foreach (Form form in Application.OpenForms)
+                        //{
+                        //    form.Show();
+                        //}
                         MessageBox.Show("已经有一个实例在运行了！", "温馨提示");
                     }
                 }
+
             }
             catch (Exception ex)
             {

@@ -22,5 +22,6 @@ namespace MyDevTools.Plugin
         public const string Utility = "小工具";
         public const string Crypto = "算法";
         public const string Math = "数学";
+        public const string FileHelper = "文件工具";
     }
 }

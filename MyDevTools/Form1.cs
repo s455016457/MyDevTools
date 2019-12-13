@@ -21,7 +21,9 @@ namespace MyDevTools
         private IList<IPlugin> allPluginList;
         private IList<IPlugin> pluginList;
         private static ILogSaveProvider log = new LogSaveLocalhostProvider();
+        private static System.Timers.Timer Timer = new System.Timers.Timer();
         IMenuItemRepository menuItemRepository = new MenuItemRepository();
+        private int second;
         public Form1()
         {
             this.Icon = Resources.icon;
@@ -33,6 +35,25 @@ namespace MyDevTools
             notifyIcon1.BalloonTipText = "工具集";
             notifyIcon1.BalloonTipTitle = "工具集";
             notifyIcon1.ContextMenuStrip = contextMenuStrip2;
+            Timer.Interval = 1000;
+            Timer.Elapsed += toolStripStatus_Refresh;
+            Timer.Start();
+        }
+
+        private void toolStripStatus_Refresh(object sender, EventArgs e)
+        {
+            TimeSpan timeSpan = DateTime.Now - Process.GetCurrentProcess().StartTime;
+
+            string runTime = "";
+            if (timeSpan.Days > 0)
+                runTime += timeSpan.Days + "天";
+            if (timeSpan.Hours > 0)
+                runTime += timeSpan.Hours + "时";
+            if (timeSpan.Minutes > 0)
+                runTime += timeSpan.Minutes + "分";
+            runTime += timeSpan.Seconds + "秒";
+
+            toolStripStatusLabel_RunTime.Text = $"软件运行时长：{runTime}";
         }
 
         private void SetPluginList()
@@ -251,6 +272,16 @@ namespace MyDevTools
             {
                 this.Text += "(管理员)";
             }
+        }
+
+        private void Form1_DragEnter(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void Form1_DragDrop(object sender, DragEventArgs e)
+        {
+
         }
     }
 }

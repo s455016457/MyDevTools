@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("组", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("组", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -58,9 +58,12 @@
             this.panelUAC = new System.Windows.Forms.Panel();
             this.lbUAC = new System.Windows.Forms.Label();
             this.btnStartWithAdmin = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel_RunTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.panelUAC.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -173,6 +176,7 @@
             // lvPlugin
             // 
             this.lvPlugin.Activation = System.Windows.Forms.ItemActivation.TwoClick;
+            this.lvPlugin.AllowDrop = true;
             this.lvPlugin.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lvPlugin.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Title,
@@ -180,16 +184,17 @@
             this.Author});
             this.lvPlugin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvPlugin.FullRowSelect = true;
-            listViewGroup1.Header = "组";
-            listViewGroup1.Name = "Goup";
+            listViewGroup2.Header = "组";
+            listViewGroup2.Name = "Goup";
             this.lvPlugin.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
+            listViewGroup2});
+            this.lvPlugin.HideSelection = false;
             this.lvPlugin.LargeImageList = this.largeImageList;
             this.lvPlugin.Location = new System.Drawing.Point(0, 25);
             this.lvPlugin.MultiSelect = false;
             this.lvPlugin.Name = "lvPlugin";
             this.lvPlugin.ShowItemToolTips = true;
-            this.lvPlugin.Size = new System.Drawing.Size(724, 369);
+            this.lvPlugin.Size = new System.Drawing.Size(724, 347);
             this.lvPlugin.SmallImageList = this.smallImageList;
             this.lvPlugin.TabIndex = 3;
             this.lvPlugin.UseCompatibleStateImageBehavior = false;
@@ -291,23 +296,45 @@
             this.btnStartWithAdmin.UseVisualStyleBackColor = true;
             this.btnStartWithAdmin.Click += new System.EventHandler(this.btnStartWithAdmin_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel_RunTime});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 372);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(724, 22);
+            this.statusStrip1.TabIndex = 7;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel_RunTime
+            // 
+            this.toolStripStatusLabel_RunTime.Name = "toolStripStatusLabel_RunTime";
+            this.toolStripStatusLabel_RunTime.Size = new System.Drawing.Size(111, 17);
+            this.toolStripStatusLabel_RunTime.Text = "软件运行时长：0秒";
+            // 
             // Form1
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 394);
-            this.Controls.Add(this.panelUAC);
             this.Controls.Add(this.lvPlugin);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.panelUAC);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "工具集";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.contextMenuStrip2.ResumeLayout(false);
             this.panelUAC.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,6 +368,8 @@
         private System.Windows.Forms.Panel panelUAC;
         private System.Windows.Forms.Label lbUAC;
         private System.Windows.Forms.Button btnStartWithAdmin;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_RunTime;
     }
 }
 
