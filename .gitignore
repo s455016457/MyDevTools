@@ -16,3 +16,6 @@
 /MyDevTools.Plugin.UtilityTools/bin
 /MyDevTools.Plugin.UtilityTools/obj
 /UnitTest/Test.MyDevTools.Plugin.UtilityTools/Tranfer.cs
+bin
+obj
+/dingtalk-sdk-cshap/taobao-sdk-net-auto_1479188381469-20201109-source.zip

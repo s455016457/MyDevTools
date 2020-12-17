@@ -49,6 +49,13 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="zxing, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.4\lib\net45\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.4.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.4\lib\net45\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Test.MyDevTools.Plugin.EncryptionTools\TestRijndaelCrypto.cs" />
@@ -65,11 +72,16 @@
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestTraditionalToSimplified.cs" />
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\Tranfer.cs" />
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestMathHelper.cs" />
+    <Compile Include="TestPrintDocument.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DotNetPrint\DotNetPrint.csproj">
+      <Project>{d7c6994e-9891-484e-bc03-af393be78fb3}</Project>
+      <Name>DotNetPrint</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyDevTools.Plugin.EncryptionTools\MyDevTools.Plugin.EncryptionTools.csproj">
       <Project>{ad28b317-0904-4cd6-ba03-9be9afa16f28}</Project>
       <Name>MyDevTools.Plugin.EncryptionTools</Name>

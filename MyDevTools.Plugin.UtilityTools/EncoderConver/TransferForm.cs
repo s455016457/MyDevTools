@@ -36,7 +36,7 @@ namespace MyDevTools.Plugin.UtilityTools.EncoderConver
 
         private void btnGenTable_Click(object sender, EventArgs e)
         {
-            System.Drawing.FontFamily.Families[0].
+            //System.Drawing.FontFamily.Families[0].
         }
     }
 }

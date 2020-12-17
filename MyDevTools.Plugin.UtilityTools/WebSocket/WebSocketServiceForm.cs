@@ -135,6 +135,14 @@ namespace MyDevTools.Plugin.UtilityTools.WebSocket
         private bool WebSocketService_OnAuthentication(System.Net.HttpListenerContext listenerContext)
         {
             Console.WriteLine("身份验证");
+
+            Console.WriteLine("请求头信息：");
+            var headers = listenerContext.Request.Headers;
+            foreach (string key in headers.AllKeys)
+            {
+                Console.WriteLine($"【{key}】：【{headers[key]}】");
+            }
+
             return true;
         }
 
