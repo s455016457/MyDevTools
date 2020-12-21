@@ -23,6 +23,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopSdk", "dingtalk-sdk-csha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetPrint", "DotNetPrint\DotNetPrint.csproj", "{D7C6994E-9891-484E-BC03-AF393BE78FB3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LabelCore", "LabelCore\LabelCore.csproj", "{EB8B7CF1-6FC4-4AEE-B68B-EEC2B49FC252}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{D1FDFB0B-BC9E-4DD5-B6B6-A5871AC2DCD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{EE23FFFC-46D9-48D5-980B-A0623D89B87C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "文档", "文档", "{45B1BDBC-F144-4A3C-B624-D0C8FF5F2FD0}"
+	ProjectSection(SolutionItems) = preProject
+		文档\SkiaSharp中文字体问题.md = 文档\SkiaSharp中文字体问题.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +80,18 @@ Global
 		{D7C6994E-9891-484E-BC03-AF393BE78FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7C6994E-9891-484E-BC03-AF393BE78FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7C6994E-9891-484E-BC03-AF393BE78FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB8B7CF1-6FC4-4AEE-B68B-EEC2B49FC252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB8B7CF1-6FC4-4AEE-B68B-EEC2B49FC252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB8B7CF1-6FC4-4AEE-B68B-EEC2B49FC252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB8B7CF1-6FC4-4AEE-B68B-EEC2B49FC252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1FDFB0B-BC9E-4DD5-B6B6-A5871AC2DCD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1FDFB0B-BC9E-4DD5-B6B6-A5871AC2DCD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1FDFB0B-BC9E-4DD5-B6B6-A5871AC2DCD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1FDFB0B-BC9E-4DD5-B6B6-A5871AC2DCD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE23FFFC-46D9-48D5-980B-A0623D89B87C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE23FFFC-46D9-48D5-980B-A0623D89B87C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE23FFFC-46D9-48D5-980B-A0623D89B87C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE23FFFC-46D9-48D5-980B-A0623D89B87C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
