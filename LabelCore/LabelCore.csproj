@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netframework4.6.2</TargetFramework>
+    <TargetFramework>netframework4.7.2</TargetFramework>
+    <!--<TargetFramework>monoandroid1.0</TargetFramework>
+    <TargetFramework>xamarin.ios1.0</TargetFramework>
+    <TargetFramework>xamarin.tvos1.0</TargetFramework>
+    <TargetFramework>xamarin.watchos1.0</TargetFramework>
+    <TargetFramework>xamarin.mac2.0</TargetFramework>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\BaseLineControl.cs" />
+    <Compile Remove="Entities\BoxControl.cs" />
+    <Compile Remove="Entities\HorizontalLineControl.cs" />
+    <Compile Remove="Entities\StraightLineControl.cs" />
+    <Compile Remove="Entities\VerticalLineControl.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp" Version="2.80.2" />
+    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="ZXing.Net" Version="0.16.6" />
+  </ItemGroup>
+
+</Project>

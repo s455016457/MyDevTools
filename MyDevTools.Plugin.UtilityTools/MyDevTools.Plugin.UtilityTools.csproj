@@ -141,9 +141,23 @@
     <Compile Include="PasswordManagementTool\Factory.cs" />
     <Compile Include="PasswordManagementTool\Repository\Impl\PasswordProjectRepository.cs" />
     <Compile Include="PasswordManagementTool\Repository\IPassworkProjectRepository.cs" />
+    <Compile Include="PDF\MergePDF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PDF\MergePDF.Designer.cs">
+      <DependentUpon>MergePDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PDF\RemovePDFPages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PDF\RemovePDFPages.Designer.cs">
+      <DependentUpon>RemovePDFPages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\GCDPlugin.cs" />
     <Compile Include="Plugins\ILSpyPlugin.cs" />
     <Compile Include="Plugins\IHasherPlugin.cs" />
+    <Compile Include="Plugins\MergePDFPlugin.cs" />
+    <Compile Include="Plugins\RemovePDFPagePlugin.cs" />
     <Compile Include="Plugins\TraditionalToSimplifiedPlugin.cs" />
     <Compile Include="Plugins\WebSocketClientPlugin.cs" />
     <Compile Include="Plugins\WebSocketServicePlugin.cs" />
@@ -213,6 +227,10 @@
       <Project>{f640fd49-f9bf-42b2-b606-3cb988921ba5}</Project>
       <Name>MyDevTools.Plugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PdfHelper\PdfHelper.csproj">
+      <Project>{c300f9d2-56cd-4ae4-8b14-17a4401c283a}</Project>
+      <Name>PdfHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -259,6 +277,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyQRCoder\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PDF\MergePDF.resx">
+      <DependentUpon>MergePDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PDF\RemovePDFPages.resx">
+      <DependentUpon>RemovePDFPages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -397,10 +421,12 @@
 xcopy /r /y $(TargetDir)可执行文件 $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\
 xcopy /r /y $(TargetDir)可执行文件\ILSpy_binaries $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\ILSpy_binaries\
 xcopy /r /y $(TargetDir)可执行文件\ILSpy_binaries\zh-Hans $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\ILSpy_binaries\zh-Hans\
+xcopy /r /y $(TargetDir)*$(TargetExt) $(ProjectDir)..\我的工具集\Plugins\UtilityTools\
 
 xcopy /r /y $(TargetPath)  $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\
 xcopy /r /y $(TargetDir)可执行文件 $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\可执行文件\
 xcopy /r /y $(TargetDir)可执行文件\ILSpy_binaries  $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\可执行文件\ILSpy_binaries\
-xcopy /r /y $(TargetDir)可执行文件\ILSpy_binaries\zh-Hans  $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\可执行文件\ILSpy_binaries\zh-Hans\</PostBuildEvent>
+xcopy /r /y $(TargetDir)可执行文件\ILSpy_binaries\zh-Hans  $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\可执行文件\ILSpy_binaries\zh-Hans\
+xcopy /r /y $(TargetDir)*$(TargetExt) $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\</PostBuildEvent>
   </PropertyGroup>
 </Project>

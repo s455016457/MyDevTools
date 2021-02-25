@@ -73,6 +73,7 @@
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\Tranfer.cs" />
     <Compile Include="Test.MyDevTools.Plugin.UtilityTools\TestMathHelper.cs" />
     <Compile Include="TestPrintDocument.cs" />
+    <Compile Include="TestPDFHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -93,6 +94,10 @@
     <ProjectReference Include="..\MyDevTools.Plugin\MyDevTools.Plugin.csproj">
       <Project>{f640fd49-f9bf-42b2-b606-3cb988921ba5}</Project>
       <Name>MyDevTools.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PdfHelper\PdfHelper.csproj">
+      <Project>{c300f9d2-56cd-4ae4-8b14-17a4401c283a}</Project>
+      <Name>PdfHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
