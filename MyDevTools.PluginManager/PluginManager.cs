@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LogProvider;
 using LogProvider.Interfaces;
 using LogProvider.Factories;
-using MyDevTools.Plugin;
 using MyDevTools.Plugin.Interfaces;
-using MyDevTools.Plugin.Attributes;
 using System.IO;
 using System.Reflection;
 using MyDevTools.Plugin.Utility;
+using System.Diagnostics;
 
 namespace MyDevTools.PluginManager
 {
@@ -63,26 +60,21 @@ namespace MyDevTools.PluginManager
         {
             Plugins = new List<IPlugin>();
             List<String> files = GetFiles(PluginsFolder);
+            var pluginAssemblies = new List<Assembly>();
 
+            // 加载插件dll及插件所需dll
             foreach (String filePath in files)
             {
                 string fileName = Path.GetFileName(filePath);
                 string fileExtension = Path.GetExtension(filePath);
 
-                if (fileName.Equals("MyDevTools.Plugin.dll", StringComparison.InvariantCultureIgnoreCase) 
+                if (fileName.Equals("MyDevTools.Plugin.dll", StringComparison.InvariantCultureIgnoreCase)
                     || !_pluginExtensions.Contains(fileExtension)) continue;
 
                 try
                 {
                     Assembly pluginAssembly = Assembly.LoadFrom(filePath);
-                    Type[] exprotedTypes = pluginAssembly.GetExportedTypes();
-
-                    foreach (Type type in exprotedTypes)
-                    {
-                        if (!TypeIsIPlugin(type)) continue;
-
-                        Plugins.Add((IPlugin)Activator.CreateInstance(type));
-                    }
+                    pluginAssemblies.Add(pluginAssembly);
                 }
                 catch (Exception ex)
                 {
@@ -91,7 +83,31 @@ namespace MyDevTools.PluginManager
                         LogLevelFactory.CreateWarningLogLevel());
                     log.SaveLog(entity);
                 }
-            }            
+            }
+
+            // 初始化插件
+            foreach (var pluginAssembly in pluginAssemblies.Where(p => p.FullName.Contains("Plugin")))
+            {
+                Type[] exprotedTypes = pluginAssembly.GetExportedTypes();
+
+                foreach (Type type in exprotedTypes)
+                {
+                    if (!TypeIsIPlugin(type)) continue;
+                    try
+                    {
+                        var obj = (IPlugin)Activator.CreateInstance(type);
+
+                        Plugins.Add(obj);
+                    }
+                    catch (Exception ex)
+                    {
+                        var entity = LogEntityFactory.Create(String.Format("初始化 {0} 时出现错误:{1}", type.FullName, ex.ToString()),
+                            LogTypeFacotry.CreateExceptionLogType(),
+                            LogLevelFactory.CreateWarningLogLevel());
+                        log.SaveLog(entity);
+                    }
+                }
+            }
         }
 
         /// <summary>

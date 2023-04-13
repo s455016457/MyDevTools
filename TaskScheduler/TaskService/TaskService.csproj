@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net48;netstandard2.1;net6.0-windows</TargetFrameworks>
+    <AssemblyName>Microsoft.Win32.TaskScheduler</AssemblyName>
+    <RootNamespace>Microsoft.Win32.TaskScheduler</RootNamespace>
+    <PackageId>TaskScheduler</PackageId>
+    <Title>Task Scheduler Managed Wrapper (the original Microsoft.Win32.TaskScheduler)</Title>
+    <Description>Provides a single assembly wrapper for the 1.0 and 2.0 versions of Task Scheduler found in all Microsoft operating systems post Windows 98. It simplifies the coding, aggregates the multiple versions and allows for localization support.</Description>
+    <PackageTags>task;interop;windows;taskscheduler;scheduler;.net;task scheduler</PackageTags>
+    <PackageReadmeFile>TaskService.md</PackageReadmeFile>
+    <SignAssembly>True</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="TaskService.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="TaskService.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TaskService.bmp" />
+  </ItemGroup>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('net48')) ">
+    <Reference Include="System.Drawing" />
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
+    <PackageReference Include="System.Security.Permissions" Version="7.0.0" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' Or $(TargetFramework.StartsWith('net5')) Or $(TargetFramework.StartsWith('net6')) Or $(TargetFramework.StartsWith('net7')) ">
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="7.0.0" />
+    <PackageReference Include="System.Security.AccessControl" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

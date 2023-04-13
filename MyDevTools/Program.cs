@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,6 +28,9 @@ namespace MyDevTools
                 {
                     if (createdNew)
                     {
+                        Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
+                        //Application.CurrentCulture = new CultureInfo("en-US", true);
+                        //Application.CurrentInputLanguage = InputLanguage.FromCulture(CultureInfo.CurrentCulture);
                         Application.Run(new Form1());
                         mutext.ReleaseMutex();
                     }

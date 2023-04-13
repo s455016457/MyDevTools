@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="ActionEditDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ComObjectSelectionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CustomComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DialogBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DropDownCheckList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DropDownCheckTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="EventActionFilterDataEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EventActionFilterEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EventActionFilterTimeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EventViewerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="EventViewerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FullDateTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ListColumnEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Native\CredentialsDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Native\DisabledItemComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Native\FolderBrowserDialog2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Native\ListViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="OptionPanels\ActionsOptionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="OptionPanels\GeneralOptionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="OptionPanels\OptionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="OptionPanels\OptionPanelHeaderLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="OptionPanels\RuntimeOptionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="OptionPanels\SecurityOptionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="OptionPanels\StartupOptionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="OptionPanels\TriggersOptionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="OptionPanels\WrappingControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="TaskBrowserDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TaskEditDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TaskHistoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="TaskListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="TaskOptionsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TaskPropertiesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="TaskRunTimesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="TaskRunTimesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TaskSchedulerWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TaskServiceConnectDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TriggerEditDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UIComponents\ActionCollectionUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\BaseTriggerUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\CalendarTriggerUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\ComHandlerActionUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\DailyTriggerUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\EmailActionUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\EventTriggerUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\ExecActionUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\MonthlyTriggerUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\ShowMessageActionUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\TriggerCollectionUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UIComponents\WeeklyTriggerUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <UseWindowsForms>true</UseWindowsForms>
+    <TargetFrameworks>net48;net6.0-windows;net7.0-windows</TargetFrameworks>
+    <AssemblyName>Microsoft.Win32.TaskSchedulerEditor</AssemblyName>
+    <RootNamespace>Microsoft.Win32.TaskScheduler</RootNamespace>
+    <PackageId>TaskSchedulerEditor</PackageId>
+    <Title>Task Scheduler Managed Wrapper UI Library</Title>
+    <Description>Provides localizable UI elements for editing classes in the TaskScheduler library.</Description>
+    <PackageTags>task;interop;taskscheduler;UI;editor</PackageTags>
+    <PackageReadmeFile>TaskEditor.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="TaskEditor.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\TaskService\Native\ADVAPI32.cs" Link="Native\ADVAPI32.cs" />
+    <Compile Include="..\TaskService\Native\EnumUtil.cs" Link="Native\EnumUtil.cs" />
+    <Compile Include="..\TaskService\Native\ExtensionAttributeFor.NET_2.0.cs" Link="Native\ExtensionAttributeFor.NET_2.0.cs" />
+    <Compile Include="..\TaskService\Native\Func.Net2.cs" Link="Native\Func.Net2.cs" />
+    <Compile Include="..\TaskService\Native\InteropUtil.cs" Link="Native\InteropUtil.cs" />
+    <Compile Include="..\TaskService\Native\KERNEL32.cs" Link="Native\KERNEL32.cs" />
+    <Compile Include="..\TaskService\Native\Linq.Net2.cs" Link="Native\Linq.Net2.cs" />
+    <Compile Include="..\TaskService\Native\SYSTEMTIME.cs" Link="Native\SYSTEMTIME.cs" />
+    <Compile Include="..\TaskService\ReflectionHelper.cs" Link="Native\ReflectionHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TaskDialog.bmp" />
+    <EmbeddedResource Include="Dialog.bmp" />
+    <EmbeddedResource Include="Control.bmp" />
+    <EmbeddedResource Include="TaskControl.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="EditorProperties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="EditorProperties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="EditorProperties\Resources.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="EditorProperties\Resources.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="EditorProperties\Resources.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="EditorProperties\Resources.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="EditorProperties\Resources.pl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="EditorProperties\Resources.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="EditorProperties\Resources.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaskService\TaskService.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('net2')) Or $(TargetFramework.StartsWith('net3')) Or $(TargetFramework.StartsWith('net4')) ">
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="CustomMarshalers" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AeroWizard" Version="2.3.1" />
+    <PackageReference Include="GroupControls" Version="1.9.0" />
+    <PackageReference Include="TimeSpan2" Version="2.4.2" />
+    <PackageReference Include="Tulpep.ActiveDirectoryObjectPicker" Version="3.0.11" />
+  </ItemGroup>
+</Project>

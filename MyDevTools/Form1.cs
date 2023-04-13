@@ -13,6 +13,8 @@ using LogProvider;
 using System.Security.Principal;
 using System.Diagnostics;
 using System.IO;
+using System.Globalization;
+using System.Threading;
 
 namespace MyDevTools
 {
@@ -26,12 +28,15 @@ namespace MyDevTools
         private int second;
         public Form1()
         {
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
+            }
             this.Icon = Resources.icon;
             InitializeComponent();
             SetPluginList();
             FillListView();
             GroupToolStripMenuItem.CheckedChanged += GroupToolStripMenuItem_CheckedChanged;
-            Form1.SetWindowTheme(this.lvPlugin.Handle, "Explorer", null);
+            SetWindowTheme(this.lvPlugin.Handle, "Explorer", null);
             notifyIcon1.BalloonTipText = "工具集";
             notifyIcon1.BalloonTipTitle = "工具集";
             notifyIcon1.ContextMenuStrip = contextMenuStrip2;
