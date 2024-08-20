@@ -186,6 +186,7 @@
       <DependentUpon>RemovePDFPages.cs</DependentUpon>
     </Compile>
     <Compile Include="Plugins\GCDPlugin.cs" />
+    <Compile Include="Plugins\WinTaskSchedulerPlugin.cs" />
     <Compile Include="Plugins\ILSpyPlugin.cs" />
     <Compile Include="Plugins\IHasherPlugin.cs" />
     <Compile Include="Plugins\MergePDFPlugin.cs" />
@@ -478,12 +479,18 @@
 xcopy /r /y $(TargetDir)可执行文件 $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\
 xcopy /r /y $(TargetDir)可执行文件\ILSpy_binaries $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\ILSpy_binaries\
 xcopy /r /y $(TargetDir)可执行文件\ILSpy_binaries\zh-Hans $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\ILSpy_binaries\zh-Hans\
+xcopy /r /y $(TargetDir)可执行文件\WinTaskScheduler $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\WinTaskScheduler\
+xcopy /r /y $(TargetDir)可执行文件\WinTaskScheduler\zh-CN $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\WinTaskScheduler\zh-CN\
+xcopy /r /y $(TargetDir)可执行文件\WinTaskScheduler\可执行文件\ToastContentConsole $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\WinTaskScheduler\可执行文件\ToastContentConsole\
 xcopy /r /y $(TargetDir)*$(TargetExt) $(ProjectDir)..\我的工具集\Plugins\UtilityTools\
 
 xcopy /r /y $(TargetPath)  $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\
 xcopy /r /y $(TargetDir)可执行文件 $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\可执行文件\
 xcopy /r /y $(TargetDir)可执行文件\ILSpy_binaries  $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\可执行文件\ILSpy_binaries\
 xcopy /r /y $(TargetDir)可执行文件\ILSpy_binaries\zh-Hans  $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\可执行文件\ILSpy_binaries\zh-Hans\
+xcopy /r /y $(TargetDir)可执行文件\WinTaskScheduler $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\WinTaskScheduler\
+xcopy /r /y $(TargetDir)可执行文件\WinTaskScheduler\zh-CN $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\WinTaskScheduler\zh-CN\
+xcopy /r /y $(TargetDir)可执行文件\WinTaskScheduler\可执行文件\ToastContentConsole $(ProjectDir)..\我的工具集\Plugins\UtilityTools\可执行文件\WinTaskScheduler\可执行文件\ToastContentConsole\
 xcopy /r /y $(TargetDir)*$(TargetExt) $(ProjectDir)..\MyDevTools\bin\Debug\Plugins\UtilityTools\</PostBuildEvent>
   </PropertyGroup>
 </Project>

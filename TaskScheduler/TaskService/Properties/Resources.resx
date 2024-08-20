@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActionTypeComHandler" xml:space="preserve">
     <value>Call a COM object</value>
@@ -353,5 +353,9 @@
   </data>
   <data name="Error_TriggerEndBeforeStart" xml:space="preserve">
     <value>The date and time a trigger expires must be later than the time time it starts or is activated.</value>
+  </data>
+  <data name="SendNotificationAction" xml:space="preserve">
+    <value>{0}</value>
+    <comment>0 = Title; 1 = MessageBody; 2 = Id</comment>
   </data>
 </root>

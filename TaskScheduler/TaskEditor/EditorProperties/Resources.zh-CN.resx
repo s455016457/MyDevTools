@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AnyConnection" xml:space="preserve">
     <value>任何连接</value>
@@ -313,106 +313,106 @@
   <data name="Error_RepetitionMoreThanDuration" xml:space="preserve">
     <value>重复的间隔值必须少于等于重复的持续值</value>
   </data>
-  <data name="TaskCompatibility">
+  <data name="TaskCompatibility" xml:space="preserve">
     <value>AT service|Windows Server™ 2003, Windows® XP o Windows® 2000|Windows Vista™, Windows Server™ 2008|Windows® 7, Windows Server™ 2008 R2|Windows® 8, Windows Server™ 2012|Windows®10</value>
   </data>
-  <data name="TimeSpanNotStarted">
+  <data name="TimeSpanNotStarted" xml:space="preserve">
     <value>未开始</value>
   </data>
-  <data name="ProcessPriorityAboveNormal">
+  <data name="ProcessPriorityAboveNormal" xml:space="preserve">
     <value>以上正常</value>
   </data>
-  <data name="ProcessPriorityBelowNormal">
+  <data name="ProcessPriorityBelowNormal" xml:space="preserve">
     <value>下面正常</value>
   </data>
-  <data name="ProcessPriorityHigh">
+  <data name="ProcessPriorityHigh" xml:space="preserve">
     <value>高</value>
   </data>
-  <data name="ProcessPriorityIdle">
+  <data name="ProcessPriorityIdle" xml:space="preserve">
     <value>闲置</value>
   </data>
-  <data name="ProcessPriorityNormal">
+  <data name="ProcessPriorityNormal" xml:space="preserve">
     <value>正常</value>
   </data>
-  <data name="ProcessPriorityRealTime">
+  <data name="ProcessPriorityRealTime" xml:space="preserve">
     <value>实时的</value>
   </data>
-  <data name="SIDTypeDefault">
+  <data name="SIDTypeDefault" xml:space="preserve">
     <value>默认</value>
   </data>
-  <data name="SIDTypeNone">
+  <data name="SIDTypeNone" xml:space="preserve">
     <value>没有</value>
   </data>
-  <data name="SIDTypeUnrestricted">
+  <data name="SIDTypeUnrestricted" xml:space="preserve">
     <value>无限制的</value>
   </data>
-  <data name="Error_PrincipalSidTypeInvalid">
+  <data name="Error_PrincipalSidTypeInvalid" xml:space="preserve">
     <value>必须设置为“常规”选项卡上的“网络服务”或“本地服务”的过程SID类型设置为“无限制”添加“选项卡上的用户帐户。您必须更改SID类型，或者设置用户的有效帐户。</value>
   </data>
-  <data name="UseUnifiedResetQuestion">
+  <data name="UseUnifiedResetQuestion" xml:space="preserve">
     <value>设置此属性将禁用一些其他属性。你仍然要继续吗？</value>
   </data>
-  <data name="ActionTypeComHandler">
+  <data name="ActionTypeComHandler" xml:space="preserve">
     <value>自定义处理程序</value>
   </data>
-  <data name="ActionTypeExecute">
+  <data name="ActionTypeExecute" xml:space="preserve">
     <value>启动程序</value>
   </data>
-  <data name="ActionTypeSendEmail">
+  <data name="ActionTypeSendEmail" xml:space="preserve">
     <value>发送电\u200b\u200b子邮件</value>
   </data>
-  <data name="ActionTypeShowMessage">
+  <data name="ActionTypeShowMessage" xml:space="preserve">
     <value>显示一条消息，</value>
   </data>
-  <data name="TaskInstancesIgnoreNew">
+  <data name="TaskInstancesIgnoreNew" xml:space="preserve">
     <value>不启动一个新的实例</value>
   </data>
-  <data name="TaskInstancesParallel">
+  <data name="TaskInstancesParallel" xml:space="preserve">
     <value>在平行运行的一个新实例</value>
   </data>
-  <data name="TaskInstancesQueue">
+  <data name="TaskInstancesQueue" xml:space="preserve">
     <value>队列中的一个新实例</value>
   </data>
-  <data name="TaskInstancesStopExisting">
+  <data name="TaskInstancesStopExisting" xml:space="preserve">
     <value>停止现有的实例</value>
   </data>
-  <data name="Error_InvalidSddlFormat">
+  <data name="Error_InvalidSddlFormat" xml:space="preserve">
     <value>，SDDL必须在定义的格式在http://goo.gl/6au0v</value>
   </data>
-  <data name="Error_InvalidUriFormat">
+  <data name="Error_InvalidUriFormat" xml:space="preserve">
     <value>uri是不正确的格式</value>
   </data>
-  <data name="Error_InvalidVersionFormat">
+  <data name="Error_InvalidVersionFormat" xml:space="preserve">
     <value>的格式为major.minor版本必须是在建设[修订]。</value>
   </data>
-  <data name="EventDetailHeader">
+  <data name="EventDetailHeader" xml:space="preserve">
     <value>事件{0}的TaskScheduler</value>
   </data>
-  <data name="HistoryHeader">
+  <data name="HistoryHeader" xml:space="preserve">
     <value>的事件数：{0}</value>
   </data>
-  <data name="EventPropertiesDialogTitle">
+  <data name="EventPropertiesDialogTitle" xml:space="preserve">
     <value>事件属性 - 事件{0}的TaskScheduler</value>
   </data>
-  <data name="TaskEventStatusFailure">
+  <data name="TaskEventStatusFailure" xml:space="preserve">
     <value>失败</value>
   </data>
-  <data name="TaskEventStatusStillRunning">
+  <data name="TaskEventStatusStillRunning" xml:space="preserve">
     <value>仍在运行</value>
   </data>
-  <data name="TaskEventStatusSuccess">
+  <data name="TaskEventStatusSuccess" xml:space="preserve">
     <value>成功</value>
   </data>
-  <data name="TaskEventStatusTerminated">
+  <data name="TaskEventStatusTerminated" xml:space="preserve">
     <value>终止</value>
   </data>
-  <data name="TriggerTypeRemoteConnect">
+  <data name="TriggerTypeRemoteConnect" xml:space="preserve">
     <value>在连接到远程用户会话</value>
   </data>
-  <data name="TriggerTypeRemoteDisconnect">
+  <data name="TriggerTypeRemoteDisconnect" xml:space="preserve">
     <value>从远程用户会话断开</value>
   </data>
-  <data name="LoadingPrompt">
+  <data name="LoadingPrompt" xml:space="preserve">
     <value>载入中...</value>
   </data>
   <data name="ChangeUserBtn" xml:space="preserve">
@@ -558,5 +558,8 @@
   </data>
   <data name="Error_TriggerEndBeforeStart" xml:space="preserve">
     <value>触发器到期的日期和时间必须晚于其启动或激活的时间。</value>
+  </data>
+  <data name="ActionTypeSendNotification" xml:space="preserve">
+    <value>发送消息</value>
   </data>
 </root>

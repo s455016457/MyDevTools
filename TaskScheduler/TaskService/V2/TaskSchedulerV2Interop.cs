@@ -324,19 +324,29 @@ namespace Microsoft.Win32.TaskScheduler.V2Interop
 		string Delay { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
 		string UserId { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
 		TaskSessionStateChangeType StateChange { get; [param: In] set; }
-	}
+    }
 
-	[ComImport, Guid("505E9E68-AF89-46B8-A30F-56162A83D537"), InterfaceType(ComInterfaceType.InterfaceIsDual), System.Security.SuppressUnmanagedCodeSecurity]
-	internal interface IShowMessageAction : IAction
-	{
-		new string Id { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
-		new TaskActionType Type { get; }
+    [ComImport, Guid("505E9E68-AF89-46B8-A30F-56162A83D537"), InterfaceType(ComInterfaceType.InterfaceIsDual), System.Security.SuppressUnmanagedCodeSecurity]
+    internal interface IShowMessageAction : IAction
+    {
+        new string Id { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
+        new TaskActionType Type { get; }
 
-		string Title { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
-		string MessageBody { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
-	}
+        string Title { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
+        string MessageBody { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
+    }
 
-	[ComImport, Guid("F5BC8FC5-536D-4F77-B852-FBC1356FDEB6"), InterfaceType(ComInterfaceType.InterfaceIsDual), System.Security.SuppressUnmanagedCodeSecurity]
+    [ComImport, Guid("24D42CB2-2164-49D9-80FF-49D3AFD61D08"), InterfaceType(ComInterfaceType.InterfaceIsDual), System.Security.SuppressUnmanagedCodeSecurity]
+    internal interface ISendNotificationAction : IAction
+    {
+        new string Id { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
+        new TaskActionType Type { get; }
+
+        string Title { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
+        string MessageBody { [return: MarshalAs(UnmanagedType.BStr)] get; [param: In, MarshalAs(UnmanagedType.BStr)] set; }
+    }
+
+    [ComImport, Guid("F5BC8FC5-536D-4F77-B852-FBC1356FDEB6"), InterfaceType(ComInterfaceType.InterfaceIsDual), System.Security.SuppressUnmanagedCodeSecurity]
 	internal interface ITaskDefinition
 	{
 		IRegistrationInfo RegistrationInfo { [return: MarshalAs(UnmanagedType.Interface)] get; [param: In, MarshalAs(UnmanagedType.Interface)] set; }

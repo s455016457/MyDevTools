@@ -126,7 +126,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="execProgBrowseBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 18</value>
+    <value>339, 18</value>
   </data>
   <data name="execProgBrowseBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>114, 25</value>
@@ -196,7 +196,7 @@
     <value>156, 49</value>
   </data>
   <data name="execArgText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 23</value>
+    <value>297, 23</value>
   </data>
   <data name="execArgText.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -220,7 +220,7 @@
     <value>3, 18</value>
   </data>
   <data name="execProgText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 23</value>
+    <value>330, 23</value>
   </data>
   <data name="execProgText.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -313,7 +313,7 @@
     <value>4</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>434, 104</value>
+    <value>456, 104</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -337,7 +337,7 @@
     <value>156, 78</value>
   </data>
   <data name="execDirText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 23</value>
+    <value>297, 23</value>
   </data>
   <data name="execDirText.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -367,7 +367,7 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>434, 108</value>
+    <value>456, 108</value>
   </data>
   <data name="&gt;&gt;openFileDialog1.Name" xml:space="preserve">
     <value>openFileDialog1</value>

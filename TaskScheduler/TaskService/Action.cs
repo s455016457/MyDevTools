@@ -3,6 +3,7 @@ using Microsoft.Win32.TaskScheduler.V2Interop;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Xml.Serialization;
@@ -26,7 +27,11 @@ namespace Microsoft.Win32.TaskScheduler
 		SendEmail = 6,
 
 		/// <summary>This action shows a message box.</summary>
-		ShowMessage = 7
+		ShowMessage = 7,
+		/// <summary>
+		/// 该操作向操作系统发送一个通知
+		/// </summary>
+		SendNotification= 8,
 	}
 
 	/// <summary>An interface that exposes the ability to convert an actions functionality to a PowerShell script.</summary>
@@ -229,7 +234,8 @@ namespace Microsoft.Win32.TaskScheduler
 		{
 			if (iAction == null)
 				return unboundValues.TryGetValue(propName, out var value) ? (T)value : defaultValue;
-			return ReflectionHelper.GetProperty((TB)iAction, propName, defaultValue);
+			TB obj = (TB)iAction;
+			return ReflectionHelper.GetProperty(obj, propName, defaultValue);
 		}
 
 		internal void OnPropertyChanged(string propName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
@@ -259,6 +265,8 @@ namespace Microsoft.Win32.TaskScheduler
                     return typeof(EmailAction);
                 case TaskActionType.ShowMessage:
                     return typeof(ShowMessageAction);
+				case TaskActionType.SendNotification:
+					return typeof(ExecAction);
                 default:
 					return typeof(ExecAction);
 			}
@@ -1033,105 +1041,101 @@ namespace Microsoft.Win32.TaskScheduler
 	}
 
 
-    /// <summary>
-    /// Represents an action that shows a message box when a task is activated. <note>Only available for Task Scheduler 2.0 on Windows Vista
-    /// or Windows Server 2003 and later.</note><note type="warning">This action has been deprecated in Windows 8 and later. However, this
-    /// library is able to mimic its functionality using PowerShell if the <see cref="ActionCollection.PowerShellConversion"/> property is
-    /// set to <see cref="PowerShellActionPlatformOption.All"/>. To disable this conversion, set the value to <see cref="PowerShellActionPlatformOption.Never"/>.</note>
-    /// </summary>
-    /// <remarks>Display a message when the trigger fires using the ShowMessageAction.</remarks>
-    /// <example>
-    /// <code lang="cs">
-    ///<![CDATA[
-    ///SendNotificationAction sn = new SendNotificationAction("You just got a message!", "SURPRISE");
-    ///]]>
-    /// </code>
-    /// </example>
-    [XmlType(IncludeInSchema = true)]
-    [XmlRoot("SendNotification", Namespace = TaskDefinition.tns, IsNullable = false)]
-    public sealed class SendNotificationAction : Action, IBindAsExecAction
-    {
-        /// <summary>Creates a new unbound instance of <see cref="ShowMessageAction"/>.</summary>
-        public SendNotificationAction() { }
+    ///// <summary>
+    ///// Represents an action that shows a message box when a task is activated. <note>Only available for Task Scheduler 2.0 on Windows Vista
+    ///// or Windows Server 2003 and later.</note><note type="warning">This action has been deprecated in Windows 8 and later. However, this
+    ///// library is able to mimic its functionality using PowerShell if the <see cref="ActionCollection.PowerShellConversion"/> property is
+    ///// set to <see cref="PowerShellActionPlatformOption.All"/>. To disable this conversion, set the value to <see cref="PowerShellActionPlatformOption.Never"/>.</note>
+    ///// </summary>
+    ///// <remarks>Display a message when the trigger fires using the SendNotificationAction.</remarks>
+    ///// <example>
+    ///// <code lang="cs">
+    /////<![CDATA[
+    /////SendNotificationAction sn = new SendNotificationAction("You just got a message!", "SURPRISE");
+    /////]]>
+    ///// </code>
+    ///// </example>
+    //[XmlType(IncludeInSchema = true)]
+    //[XmlRoot("SendNotification", Namespace = TaskDefinition.tns, IsNullable = false)]
+    //public sealed class SendNotificationAction : Action, IBindAsExecAction
+    //{
+    //    /// <summary>Creates a new unbound instance of <see cref="SendNotificationAction"/>.</summary>
+    //    public SendNotificationAction() { }
 
-        /// <summary>Creates a new unbound instance of <see cref="ShowMessageAction"/>.</summary>
-        /// <param name="messageBody">Message text that is displayed in the body of the message box.</param>
-        /// <param name="title">Title of the message box.</param>
-        public SendNotificationAction([CanBeNull] string messageBody, [CanBeNull] string title)
-        {
-            MessageBody = messageBody;
-            Title = title;
-        }
+    //    /// <summary>Creates a new unbound instance of <see cref="SendNotificationAction"/>.</summary>
+    //    /// <param name="messageBody">Message text that is displayed in the body of the message box.</param>
+    //    /// <param name="title">Title of the message box.</param>
+    //    public SendNotificationAction([CanBeNull] string messageBody, [CanBeNull] string title)
+    //    {
+    //        MessageBody = messageBody;
+    //        Title = title;
+    //    }
 
-        internal SendNotificationAction([NotNull] V1Interop.ITask task) : base(task)
-        {
-        }
+    //    internal SendNotificationAction([NotNull] V1Interop.ITask task) : base(task)
+    //    {
+    //    }
 
-        internal SendNotificationAction([NotNull] IAction action) : base(action)
-        {
-        }
+    //    internal SendNotificationAction([NotNull] IAction action) : base(action)
+    //    {
+    //    }
 
-        /// <summary>Gets or sets the message text that is displayed in the body of the message box.</summary>
-        [XmlElement("Body")]
-        [DefaultValue(null)]
-        public string MessageBody
-        {
-            get => GetProperty<string, IShowMessageAction>(nameof(MessageBody));
-            set => SetProperty<string, IShowMessageAction>(nameof(MessageBody), value);
-        }
+    //    /// <summary>Gets or sets the message text that is displayed in the body of the message box.</summary>
+    //    [XmlElement("Body")]
+    //    [DefaultValue(null)]
+    //    public string MessageBody
+    //    {
+    //        get => GetProperty<string, ISendNotificationAction>(nameof(MessageBody));
+    //        set => SetProperty<string, ISendNotificationAction>(nameof(MessageBody), value);
+    //    }
 
-        /// <summary>Gets or sets the title of the message box.</summary>
-        [DefaultValue(null)]
-        public string Title
-        {
-            get => GetProperty<string, IShowMessageAction>(nameof(Title));
-            set => SetProperty<string, IShowMessageAction>(nameof(Title), value);
-        }
+    //    /// <summary>Gets or sets the title of the message box.</summary>
+    //    [DefaultValue(null)]
+    //    public string Title
+    //    {
+    //        get => GetProperty<string, ISendNotificationAction>(nameof(Title));
+    //        set => SetProperty<string, ISendNotificationAction>(nameof(Title), value);
+    //    }
 
-        internal override TaskActionType InternalActionType => TaskActionType.ShowMessage;
+    //    internal override TaskActionType InternalActionType => TaskActionType.Execute;
 
-        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
-        /// <param name="other">An object to compare with this object.</param>
-        /// <returns><c>true</c> if the current object is equal to the <paramref name="other"/> parameter; otherwise, <c>false</c>.</returns>
-        public override bool Equals(Action other) => base.Equals(other) && string.Equals(Title, (other as ShowMessageAction)?.Title) && string.Equals(MessageBody, (other as ShowMessageAction)?.MessageBody);
+    //    /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+    //    /// <param name="other">An object to compare with this object.</param>
+    //    /// <returns><c>true</c> if the current object is equal to the <paramref name="other"/> parameter; otherwise, <c>false</c>.</returns>
+    //    public override bool Equals(Action other) => base.Equals(other) && string.Equals(Title, (other as SendNotificationAction)?.Title) && string.Equals(MessageBody, (other as SendNotificationAction)?.MessageBody);
 
-        /// <summary>Gets a string representation of the <see cref="ShowMessageAction"/>.</summary>
-        /// <returns>String representation of this action.</returns>
-        public override string ToString() => string.Format(Properties.Resources.ShowMessageAction, Title, MessageBody, Id);
+    //    /// <summary>Gets a string representation of the <see cref="SendNotificationAction"/>.</summary>
+    //    /// <returns>String representation of this action.</returns>
+    //    public override string ToString() => string.Format(Properties.Resources.SendNotificationAction, Title, MessageBody, Id);
 
-        internal static Action FromPowerShellCommand(string p)
-        {
-            var match = System.Text.RegularExpressions.Regex.Match(p, @"^\[System.Reflection.Assembly\]::LoadWithPartialName\('System.Windows.Forms'\); \[System.Windows.Forms.MessageBox\]::Show\('(?<msg>(?:[^']|'')*)'(?:,'(?<t>(?:[^']|'')*)')?\);?\s*$");
-            return match.Success ? new ShowMessageAction(match.Groups["msg"].Value.Replace("''", "'"), match.Groups["t"].Success ? match.Groups["t"].Value.Replace("''", "'") : null) : null;
-        }
+    //    internal static Action FromPowerShellCommand(string p)
+    //    {
+    //        // Start-Process -FilePath 'D:\MyProjects\Study\MyDevTools\ToastContentConsole\bin\Debug\net6.0-windows10.0.19041.0\ToastContentConsole.exe' -ArgumentList 'ShowNotification -m 这里是通知正文 -t 这里是通知抬头'
+    //        var match = System.Text.RegularExpressions.Regex.Match(p, "^Start-Process -FilePath '(?<p>[^']*)' -ArgumentList 'ShowNotification -m (?<m>[^']*) -t (?<t>[^']*)';?\\s*$");
+    //        return match.Success ? new SendNotificationAction(match.Groups["m"].Success ? match.Groups["m"].Value:null, match.Groups["t"].Success ? match.Groups["t"].Value : null) : null;
+    //    }
 
-        /// <summary>Copies the properties from another <see cref="Action"/> the current instance.</summary>
-        /// <param name="sourceAction">The source <see cref="Action"/>.</param>
-        internal override void CopyProperties(Action sourceAction)
-        {
-            if (sourceAction.GetType() == GetType())
-            {
-                base.CopyProperties(sourceAction);
-                Title = ((ShowMessageAction)sourceAction).Title;
-                MessageBody = ((ShowMessageAction)sourceAction).MessageBody;
-            }
-        }
+    //    /// <summary>Copies the properties from another <see cref="Action"/> the current instance.</summary>
+    //    /// <param name="sourceAction">The source <see cref="Action"/>.</param>
+    //    internal override void CopyProperties(Action sourceAction)
+    //    {
+    //        if (sourceAction.GetType() == GetType())
+    //        {
+    //            base.CopyProperties(sourceAction);
+    //            Title = ((SendNotificationAction)sourceAction).Title;
+    //            MessageBody = ((SendNotificationAction)sourceAction).MessageBody;
+    //        }
+    //    }
 
-        internal override void CreateV2Action(IActionCollection iActions) => iAction = iActions.Create(TaskActionType.ShowMessage);
+    //    internal override void CreateV2Action(IActionCollection iActions) => iAction = iActions.Create(TaskActionType.Execute);
 
-        internal override string GetPowerShellCommand()
-        {
-            // [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [System.Windows.Forms.MessageBox]::Show('Your_Desired_Message','Your_Desired_Title');
-            var sb = new System.Text.StringBuilder("[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [System.Windows.Forms.MessageBox]::Show('");
-            sb.Append(MessageBody.Replace("'", "''"));
-            if (Title != null)
-            {
-                sb.Append("','");
-                sb.Append(Title.Replace("'", "''"));
-            }
-            sb.Append("'); ");
-            return sb.ToString();
-        }
-    }
-
+    //    internal override string GetPowerShellCommand()
+    //    {
+    //        // TODO 拼接命令
+    //        // Start-Process -FilePath 'D:\MyProjects\Study\MyDevTools\ToastContentConsole\bin\Debug\net6.0-windows10.0.19041.0\ToastContentConsole.exe' -ArgumentList 'ShowNotification -m 这里是通知正文 -t 这里是通知抬头'
+    //        var Path = "ToastContentConsole.exe";
+    //        var sb = new System.Text.StringBuilder($"Start-Process -FilePath '{Path}'");
+    //            sb.Append($" -ArgumentList 'ShowNotification -m {MessageBody} -t {Title}'");
+    //        return sb.Append("; ").ToString();
+    //    }
+    //}
 }

@@ -60,7 +60,22 @@ namespace Microsoft.Win32.TaskScheduler
 					throw new ArgumentException("Type of Action is not permitted.", nameof(Action));
 				if (value == null) value = GetFirstAvailableAction();
 				action = value;
-				actionsCombo.SelectedIndex = actionsCombo.IndexOfItemValue(action.ActionType);
+				if (action.ActionType.Equals(TaskActionType.Execute))
+				{
+					var exAction = action as ExecAction;
+					if (exAction.Path.EndsWith("ToastContentConsole.exe"))
+                    {
+                        actionsCombo.SelectedIndex = actionsCombo.IndexOfItemValue(TaskActionType.SendNotification);
+                    }
+					else
+                    {
+                        actionsCombo.SelectedIndex = actionsCombo.IndexOfItemValue(action.ActionType);
+                    }
+				}
+				else
+				{
+					actionsCombo.SelectedIndex = actionsCombo.IndexOfItemValue(action.ActionType);
+				}
 				if (actionsCombo.SelectedIndex == -1)
 					throw new ArgumentException("Type of Action is not permitted.", nameof(Action));
 				actionIdText.Text = action?.Id;
@@ -155,25 +170,27 @@ namespace Microsoft.Win32.TaskScheduler
 			{
 				case TaskActionType.ComHandler:
 					settingsTabs.SelectedTab = comTab;
-                    comHandlerActionUI1.Size = execActionUI1.Size;
                     curHandler = comHandlerActionUI1;
 					break;
 
 				case TaskActionType.SendEmail:
 					settingsTabs.SelectedTab = emailTab;
-                    emailActionUI1.Size = execActionUI1.Size;
                     curHandler = emailActionUI1;
 					break;
 
 				case TaskActionType.ShowMessage:
 					settingsTabs.SelectedTab = messageTab;
-                    showMessageActionUI1.Size = execActionUI1.Size;
                     curHandler = showMessageActionUI1;
 					break;
 
 				case TaskActionType.Execute:
 					settingsTabs.SelectedTab = execTab;
                     curHandler = execActionUI1;
+					break;
+
+				case TaskActionType.SendNotification:
+					settingsTabs.SelectedTab = sendNotificationTab;
+					curHandler = sendNotificationActionUI1;
 					break;
 
 				default:
@@ -186,7 +203,10 @@ namespace Microsoft.Win32.TaskScheduler
 
 		private void cancelBtn_Click(object sender, EventArgs e) { Close(); }
 
-		private void DetermineIfCanValidate() { okBtn.Enabled = runActionBtn.Enabled = curHandler.CanValidate; }
+		private void DetermineIfCanValidate()
+		{
+			okBtn.Enabled = runActionBtn.Enabled = curHandler.CanValidate;
+		}
 
 		private Action GetFirstAvailableAction() => Action.CreateAction(AvToType(AvailableActions.GetFlags().First()));
 

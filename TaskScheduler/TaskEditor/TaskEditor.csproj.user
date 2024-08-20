@@ -140,6 +140,9 @@
     <Compile Update="UIComponents\MonthlyTriggerUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UIComponents\SendNotificationActionUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UIComponents\ShowMessageActionUI.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -153,4 +153,7 @@
   <data name="label2.Text" xml:space="preserve">
     <value>ID:</value>
   </data>
+  <data name="actionCombo.Items4" xml:space="preserve">
+    <value>Send a notification</value>
+  </data>
 </root>

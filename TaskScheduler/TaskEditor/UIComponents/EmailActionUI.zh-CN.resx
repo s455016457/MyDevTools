@@ -119,16 +119,19 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="emailAttachementBrowseBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>365, 249</value>
+    <value>354, 258</value>
   </data>
   <data name="emailAttachementBrowseBtn.Text" xml:space="preserve">
     <value>浏览...</value>
   </data>
   <data name="emailSMTPText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 292</value>
+    <value>89, 301</value>
+  </data>
+  <data name="emailSMTPText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>366, 23</value>
   </data>
   <data name="emailSMTPLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 296</value>
+    <value>3, 305</value>
   </data>
   <data name="emailSMTPLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 15</value>
@@ -137,13 +140,13 @@
     <value>SMTP服务器：</value>
   </data>
   <data name="emailAttachmentText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 250</value>
+    <value>89, 259</value>
   </data>
   <data name="emailAttachmentText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 23</value>
+    <value>262, 23</value>
   </data>
   <data name="emailAttachmentLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 253</value>
+    <value>2, 262</value>
   </data>
   <data name="emailAttachmentLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 15</value>
@@ -152,7 +155,10 @@
     <value>附件：</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 283</value>
+    <value>2, 292</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>450, 2</value>
   </data>
   <data name="emailTextText.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 94</value>
@@ -161,7 +167,7 @@
     <value>372, 147</value>
   </data>
   <data name="emailTextText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 147</value>
+    <value>372, 156</value>
   </data>
   <data name="emailTextLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 97</value>
@@ -174,6 +180,9 @@
   </data>
   <data name="emailSubjectText.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 64</value>
+  </data>
+  <data name="emailSubjectText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>366, 23</value>
   </data>
   <data name="emailSubjectLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 67</value>
@@ -188,7 +197,7 @@
     <value>89, 34</value>
   </data>
   <data name="emailToText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 23</value>
+    <value>365, 23</value>
   </data>
   <data name="emailToLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 37</value>
@@ -202,6 +211,9 @@
   <data name="emailFromText.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 5</value>
   </data>
+  <data name="emailFromText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>366, 23</value>
+  </data>
   <data name="emailFromLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 3</value>
   </data>
@@ -212,6 +224,6 @@
     <value>从：</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>467, 317</value>
+    <value>456, 326</value>
   </data>
 </root>

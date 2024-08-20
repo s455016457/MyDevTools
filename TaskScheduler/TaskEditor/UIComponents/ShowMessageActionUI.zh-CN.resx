@@ -117,13 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="msgIntroLabel.Text" xml:space="preserve">
-    <value>这个动作在桌面上显示一个消息框。</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="msgMsgLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 15</value>
   </data>
   <data name="msgMsgLabel.Text" xml:space="preserve">
     <value>信息：</value>
   </data>
+  <data name="msgTitleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 15</value>
+  </data>
   <data name="msgTitleLabel.Text" xml:space="preserve">
     <value>标题：</value>
+  </data>
+  <data name="msgIntroLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 15</value>
+  </data>
+  <data name="msgIntroLabel.Text" xml:space="preserve">
+    <value>这个动作在桌面上显示一个消息框。</value>
   </data>
 </root>

@@ -112,7 +112,13 @@
 		{
 			if (obj != null)
 			{
-				try { return (T)Convert.ChangeType(obj.GetType().InvokeMember(propName, BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, obj, null, null), typeof(T)); }
+				try {
+					return (T)Convert.ChangeType(
+						obj.GetType()
+						.InvokeMember(propName, BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, obj, null, null)
+						, typeof(T)
+					); 
+				}
 				catch { }
 			}
 			return defaultValue;

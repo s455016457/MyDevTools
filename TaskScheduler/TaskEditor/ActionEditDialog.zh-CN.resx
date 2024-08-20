@@ -124,6 +124,12 @@
   <data name="promptLabel.Text" xml:space="preserve">
     <value>你必须为此任务指定要执行的操作。</value>
   </data>
+  <data name="promptLabel.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="actionsCombo.Items" xml:space="preserve">
     <value>启动程序</value>
   </data>
@@ -136,6 +142,12 @@
   <data name="actionsCombo.Items3" xml:space="preserve">
     <value>自定义处理程序</value>
   </data>
+  <data name="actionsCombo.Items4" xml:space="preserve">
+    <value>发送通知</value>
+  </data>
+  <data name="actionsCombo.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="execActionUI1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
@@ -143,21 +155,35 @@
   <data name="execActionUI1.Size" type="System.Drawing.Size, System.Drawing">
     <value>456, 326</value>
   </data>
+  <data name="execActionUI1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="execTab.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="emailActionUI1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="emailActionUI1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>396, 183</value>
+    <value>456, 326</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="showMessageActionUI1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="emailActionUI1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="emailTab.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="showMessageActionUI1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
   </data>
   <data name="showMessageActionUI1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>528, 346</value>
+    <value>456, 326</value>
+  </data>
+  <data name="showMessageActionUI1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="messageTab.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="comHandlerActionUI1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
@@ -166,22 +192,55 @@
     <value>300, 67</value>
   </data>
   <data name="comHandlerActionUI1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>396, 67</value>
+    <value>456, 326</value>
+  </data>
+  <data name="comHandlerActionUI1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comTab.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="sendNotificationActionUI1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>7, 8, 7, 8</value>
+  </data>
+  <data name="sendNotificationActionUI1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>724, 638</value>
+  </data>
+  <data name="sendNotificationActionUI1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="sendNotificationTab.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="settingsTabs.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="settingsGroup.Text" xml:space="preserve">
     <value>设置</value>
   </data>
+  <data name="settingsGroup.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="okBtn.Text" xml:space="preserve">
     <value>确定</value>
   </data>
+  <data name="okBtn.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cancelBtn.Text" xml:space="preserve">
     <value>取消</value>
+  </data>
+  <data name="cancelBtn.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="actionsLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 15</value>
   </data>
   <data name="actionsLabel.Text" xml:space="preserve">
     <value>操作:</value>
+  </data>
+  <data name="actionsLabel.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="actionIdText.Location" type="System.Drawing.Point, System.Drawing">
     <value>343, 9</value>
@@ -192,6 +251,9 @@
   <data name="actionIdText.Size" type="System.Drawing.Size, System.Drawing">
     <value>88, 23</value>
   </data>
+  <data name="actionIdText.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>306, 11</value>
   </data>
@@ -200,6 +262,9 @@
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>ID：</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="runActionBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 460</value>
@@ -213,7 +278,16 @@
   <data name="runActionBtn.Text" xml:space="preserve">
     <value>运行动作</value>
   </data>
+  <data name="runActionBtn.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>新操作</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

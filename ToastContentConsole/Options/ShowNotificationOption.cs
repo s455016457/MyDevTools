@@ -29,6 +29,7 @@ namespace ToastContentConsole.Options
 
         public void Execute()
         {
+            Console.WriteLine($"获取到的参数为：{Title}  {Message}");
             new ToastContentBuilder()
                 .AddArgument("action", "viewConversation")
                 .AddArgument("conversationId", 9813)

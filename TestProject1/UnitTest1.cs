@@ -41,8 +41,8 @@ namespace TestProject1
                 .AddArgument("conversationId", 9813)
                 .AddText("Andrew sent you a picture 我的测试")
                 .AddText("Check this out, The Enchantments in Washington 测试通知!")
-                .AddButton(new ToastButton().SetContent("确定").AddArgument("action", "确定").SetBackgroundActivation())
-                .AddButton(new ToastButton().SetContent("取消").AddArgument("action", "取消").SetBackgroundActivation())
+                //.AddButton(new ToastButton().SetContent("确定").AddArgument("action", "确定").SetBackgroundActivation())
+                //.AddButton(new ToastButton().SetContent("取消").AddArgument("action", "取消").SetBackgroundActivation())
                 .Show();
         }
         [Test]
